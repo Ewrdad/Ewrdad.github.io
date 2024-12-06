@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import {Button} from '@/components/ui/button'
 import { AppSidebar } from './sidebar/sidebar'
@@ -10,14 +8,14 @@ import { Home } from './pages/Home/Home'
 function App() {
 
   return (
-    <>
+    <div className='bg-slate-500 h-full w-full'>
         <SidebarProvider>
 
     <AppSidebar />
       <Home />
       </SidebarProvider>
 
-    </>
+    </div>
   )
 }
 

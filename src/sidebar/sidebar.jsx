@@ -31,10 +31,10 @@ import {
           <SidebarGroupContent>
             <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>Raytheon</SidebarMenuButton>
+              <SidebarMenuButton>Raytheon (2022 - Present)</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>UKAEA</SidebarMenuButton>
+              <SidebarMenuButton>UKAEA (2020 - 2021)</SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
