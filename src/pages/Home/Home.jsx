@@ -7,53 +7,68 @@ export const Home = () => {
     const [toggleChange, setToggleChange] = useState(false)
     const [toggleImpact, setToggleImpact] = useState(false)
 
+    const buttonClass = "h-full align-middle hover:text-slate-700 flex lg:p-10 md:p-2 pl-0"
+const textNameClass = "lg:text-9xl md:text-9xl sm:text-6xl text-6xl"
 
     return (
 
-        <div className="self-start w-screen h-[90vh] justify-between bg-slate-500 pt-5 ">
+        <div className="self-start w-screen h-auto justify-between pt-5 items-left">
 
-            <div className="h-1/3 flex items-center">
+            <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
 
-            <Toggle className="text-[30vh]  h-full align-middle hover:text-slate-700 flex pb-10" onClick={() => {setToggleCode((prevValue)=>!prevValue)}}>
-            <p className="text-[30vh]">Code</p>
-            <p className="text-9xl">{!toggleCode ? "🞂" : "🢖"}</p>
+            <Toggle className={buttonClass} onClick={() => {setToggleCode((prevValue)=>!prevValue)}}>
+            <p className={textNameClass}>Code</p>
+            <p className={textNameClass}>{!toggleCode ? "🞂" : "🢖"}</p>
             </Toggle>
 
             {
-                toggleCode && <p className="align-middle flex">
+                toggleCode && <p className="align-middle w-full sm:w-1/2">
                     Coding this forward
                     
                 </p>
 }
             </div>
 
-            <div className="h-1/3 flex items-center">
+            <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
 
-            <Toggle className="text-[30vh] h-full align-middle hover:text-slate-700 pb-10" onClick={() => {setToggleChange((prevValue)=>!prevValue)}}>
-            <p className="text-[30vh]">Change</p>
-            <p className="text-9xl">{!toggleChange ? "🞂" : "🢖"}</p>
+            <Toggle className={buttonClass} onClick={() => {setToggleChange((prevValue)=>!prevValue)}}>
+            <p className={textNameClass}>Change</p>
+            <p className={textNameClass}>{!toggleChange ? "🞂" : "🢖"}</p>
 
             </Toggle>
 
 {
-                toggleChange && <p className="align-middle flex">
+                toggleChange && <div className="align-middle w-full sm:w-1/2 ">
 
                     Embracing change
-                </p>
+                    Embracing change
+                    Embracing change
+                    Embracing change
+                    Embracing change
+                    Embracing change
+                    Embracing change
+                    Embracing change 
+                    Embracing change
+                    Embracing change
+                    Embracing change
+                    Embracing change
+                    Embracing change
+
+                </div>
 }
             </div>
 
-            <div className="h-1/3 flex items-center">
+            <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
 
-            <Toggle className=" h-full align-middle hover:text-slate-700 pb-10 items-center" onClick={() => {setToggleImpact((prevValue)=>!prevValue)}}>
-                <p className="text-[30vh]">Impact</p>
-                <p className="text-9xl">{!toggleImpact ? "🞂" : "🢖"}</p>
+            <Toggle className={buttonClass} onClick={() => {setToggleImpact((prevValue)=>!prevValue)}}>
+                <p className={textNameClass}>Impact</p>
+                <p className={textNameClass}>{!toggleImpact ? "🞂" : "🢖"}</p>
 
                 </Toggle>
 
 
 {
-                toggleImpact && <p className="align-middle flex">
+                toggleImpact && <p className="align-middle w-full sm:w-1/2">
                         
                         Impacting the future
                 </p>

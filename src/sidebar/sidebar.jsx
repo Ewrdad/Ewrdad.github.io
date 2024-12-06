@@ -11,14 +11,18 @@ import {
     SidebarMenu
     
   } from "@/components/ui/sidebar"
+  import { useNavigate } from "react-router"
   
   export function AppSidebar() {
+
+    const navigate = useNavigate()
+
     return (
       <Sidebar >
         <SidebarHeader >
 <SidebarMenu>
         <SidebarMenuItem>
-              <SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/")}}>
                 Edward Jones
                 </SidebarMenuButton>
             </SidebarMenuItem>
@@ -27,70 +31,70 @@ import {
 
         <SidebarContent >
 
-          <SidebarGroupLabel>Work</SidebarGroupLabel>
+          <SidebarGroupLabel onClick={() => {navigate("/work")}}>Work</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton>Raytheon (2022 - Present)</SidebarMenuButton>
+            <SidebarMenuItem onClick={() => {navigate("/work#raytheon")}}>
+              <SidebarMenuButton onClick={() => {navigate("/work#raytheon")}}>Raytheon (2022 - Present)</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>UKAEA (2020 - 2021)</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/work#ukaea")}}>UKAEA (2020 - 2021)</SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
          
 
-          <SidebarGroupLabel>Certifcations</SidebarGroupLabel>
+          <SidebarGroupLabel onClick={() => {navigate("/certs")}}>Certifcations</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>AWS</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/certs#aws")}}>AWS</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>CompTIA</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/certs#comptia")}}>CompTIA</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>Azure</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/certs#azure")}}>Azure</SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
 
-          <SidebarGroupLabel>Proffesional Development</SidebarGroupLabel>
+          <SidebarGroupLabel onClick={() => {navigate("/cpd")}}>Proffesional Development</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>BCS Membership</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/cpd#bcs")}}>BCS Membership</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>Online Training</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/cpd#online")}}>Online Training</SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
 
 
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
+          <SidebarGroupLabel onClick={() => {navigate("/projects")}}>Projects</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>Portfolio</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/projects#raytheon")}}>Portfolio</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>JsUseDocs</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/projects#raytheon")}}>JsUseDocs</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>LiveQuery</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/projects#raytheon")}}>LiveQuery</SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
 
-          <SidebarGroupLabel>External Activities</SidebarGroupLabel>
+          <SidebarGroupLabel onClick={() => {navigate("/activities")}}>External Activities</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>Enactus</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/activities#enactus")}}>Enactus</SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>Cardiff Youth Council</SidebarMenuButton>
+              <SidebarMenuButton onClick={() => {navigate("/activities#cyc")}}>Cardiff Youth Council</SidebarMenuButton>
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
