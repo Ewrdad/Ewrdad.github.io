@@ -103,7 +103,11 @@ import {
 
         
 
-        <SidebarFooter />
+        <SidebarFooter >
+          <a href="/EdwardJones-Resume-Sanitised.pdf">
+            <SidebarMenuButton >Download CV(WIP)</SidebarMenuButton>
+            </a>
+        </SidebarFooter>
       </Sidebar>
     )
   }
