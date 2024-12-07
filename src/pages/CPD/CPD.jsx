@@ -37,18 +37,22 @@ export const CPD = () => {
     <h2 className="text-6xl">Membership</h2>
     <br />
     <p className="text-xl">
-    Starting on an introductory academy to rapidly upskill in agile software development practices quickly embraced into developing  a wide range of software tools including being a technical lead on an internal project. Although primarily software development also tackled things such as testing, compliance  and architecture. Alongside plenty of work to do knowledge sharing internally. 
-
+Although membership of BCS is often described only as beneficial as the effort you put in, I have found it to be a great way to keep up to date with the latest trends in the industry. I have been able to attend many events and webinars that have helped me to keep my skills fresh and learn about new technologies. I have also been able to network with other professionals in the industry and learn from their experiences. I have found that being a member of BCS has helped me to stay motivated and focused on my career goals.
     </p>
     <br />
     <h1 id="online" className="text-9xl">Online Training</h1>
     <h2 className="text-6xl">Udemy</h2>
     <br />
     <p className="text-xl">
-    Starting on an introductory academy to rapidly upskill in agile software development practices quickly embraced into developing  a wide range of software tools including being a technical lead on an internal project. Although primarily software development also tackled things such as testing, compliance  and architecture. Alongside plenty of work to do knowledge sharing internally. 
-
+This is a place to just list various course I have taken on Udemy which are part of my continued efforts to work towards self growth
+    
+    
     </p>
+    <h4>Solutions Architect Assocaite by Stephen Maerk</h4>
+    <img src="https://udemy-certificate.s3.amazonaws.com/image/UC-87b59a11-95ee-4ffd-a9d7-5121f4058ec7.jpg" alt="Udemy Certificate" />
+    
     <br />
+
 </div>
     );
 }

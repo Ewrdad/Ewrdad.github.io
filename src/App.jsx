@@ -19,8 +19,10 @@ function App() {
 
 
   return (
+  
     <BrowserRouter>
-    <div className='bg-slate-500 h-full inline-block '>
+    <div className='bg-slate-500 h-full inline-block bg-cover bg-center bg-no-repeat min-h-screen bg-fixed'
+    style={{ backgroundImage: `url(${import.meta.env.BASE_URL}background_glos.jpg)` }}>
         <SidebarProvider>
       <AppSidebar />
       <div className='block' >
