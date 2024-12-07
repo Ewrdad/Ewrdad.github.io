@@ -2,7 +2,6 @@ import {
     Sidebar,
     SidebarContent,
     SidebarFooter,
-    SidebarGroup,
     SidebarHeader,
     SidebarMenuButton,
     SidebarMenuItem,
@@ -18,7 +17,7 @@ import {
     const navigate = useNavigate()
 
     return (
-      <Sidebar >
+      <Sidebar className="h-full" >
         <SidebarHeader >
 <SidebarMenu>
         <SidebarMenuItem>

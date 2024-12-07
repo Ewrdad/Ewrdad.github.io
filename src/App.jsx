@@ -5,10 +5,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { Home } from './pages/Home/Home'
 import {
   BrowserRouter,
-  createBrowserRouter,
-  createRoutesFromElements,
   Route,
-  RouterProvider,
   Routes,
 } from "react-router";
 import { Work } from './pages/work/Work';
@@ -35,6 +32,8 @@ function App() {
   </div>
   
     <div className='flex flex-col'>
+    <div className="self-start w-3/4 h-auto justify-between pt-5 items-left">
+
     {/* <RouterProvider router={router} /> */}
     <Routes>
         <Route
@@ -68,6 +67,7 @@ function App() {
           element={<Edu />}
         />
       </Routes>
+      </div>
       </div>
       </div>
       
