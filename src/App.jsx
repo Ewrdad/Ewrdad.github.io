@@ -12,6 +12,11 @@ import {
   Routes,
 } from "react-router";
 import { Work } from './pages/work/Work';
+import { Certs } from './pages/certs/Certs';
+import { CPD } from './pages/CPD/CPD'
+import { Projects } from './pages/projects/Projects';
+import { Activities } from './pages/activities/Activities';
+import { Edu } from './pages/edu/Edu';
 
 function App() {
 
@@ -44,19 +49,23 @@ function App() {
         />
         <Route
           path="projects"
-          element={<h1 />}
+          element={<Projects />}
         />
         <Route
           path="cpd"
-          element={<h1 />}
+          element={<CPD />}
         />
         <Route
           path="certs"
-          element={<h1 />}
+          element={<Certs />}
         />
         <Route
           path="activities"
-          element={<h1 />}
+          element={<Activities />}
+        />
+          <Route
+          path="edu"
+          element={<Edu />}
         />
       </Routes>
       </div>

@@ -87,6 +87,18 @@ import {
             </SidebarMenu>
           </SidebarGroupContent>
 
+          <SidebarGroupLabel onClick={() => {navigate("/edu")}}>Education</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton onClick={() => {navigate("/edu#uni")}}>BSc Computer Security</SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton onClick={() => {navigate("/edu#chs")}}>Cardiff High School</SidebarMenuButton>
+            </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+
           <SidebarGroupLabel onClick={() => {navigate("/activities")}}>External Activities</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -98,6 +110,7 @@ import {
             </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
+
 
         </SidebarContent>
 
