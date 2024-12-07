@@ -4,7 +4,7 @@ import { AppSidebar } from './sidebar/sidebar'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { Home } from './pages/Home/Home'
 import {
-  BrowserRouter,
+  HashRouter,
   Route,
   Routes,
 } from "react-router";
@@ -20,12 +20,12 @@ function App() {
 
   return (
   
-    <BrowserRouter>
+    <HashRouter>
     <div className='bg-slate-500 h-full inline-block bg-cover bg-center bg-no-repeat min-h-screen bg-fixed'
     style={{ backgroundImage: `url(${import.meta.env.BASE_URL}background_glos.jpg)` }}>
         <SidebarProvider>
       <AppSidebar />
-      <div className='block' >
+      <div className='block bg-white/50' >
         <div className=' w-screen h-10 items-center lg:hidden md:hidden bg-slate-900 text-white flex text-xl'>
  
         <SidebarTrigger className="flex"/>
@@ -33,7 +33,7 @@ function App() {
         <p className="flex w-100">Edward Jones</p>
   </div>
   
-    <div className='flex flex-col'>
+    <div className='flex flex-col '>
     <div className="self-start w-3/4 h-auto justify-between pt-5 items-left">
 
     {/* <RouterProvider router={router} /> */}
@@ -76,7 +76,7 @@ function App() {
       </SidebarProvider>
 
     </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
