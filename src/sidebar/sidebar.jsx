@@ -1,126 +1,247 @@
 import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenuButton,
-    SidebarMenuItem,
-    SidebarGroupLabel,
-    SidebarGroupContent,
-    SidebarMenu
-    
-  } from "@/components/ui/sidebar"
-  import { useNavigate } from "react-router"
-  
-  export function AppSidebar() {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenu,
+} from "@/components/ui/sidebar";
+import { useNavigate } from "react-router";
 
-    const navigate = useNavigate()
+export function AppSidebar() {
+  const navigate = useNavigate();
 
-    return (
-      <Sidebar className="h-full" >
-        <SidebarHeader >
-<SidebarMenu>
-        <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/")}}>
-                Edward Jones
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-            </SidebarMenu>
-        </SidebarHeader>
+  return (
+    <Sidebar className="h-full">
+      <SidebarHeader className="border-b-2">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Edward Jones
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
 
-        <SidebarContent >
-
-          <SidebarGroupLabel onClick={() => {navigate("/work")}}>Work</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-            <SidebarMenuItem onClick={() => {navigate("/work#raytheon")}}>
-              <SidebarMenuButton onClick={() => {navigate("/work#raytheon")}}>Raytheon (2022 - Present)</SidebarMenuButton>
+      <SidebarContent>
+        <SidebarGroupLabel
+          onClick={() => {
+            navigate("/work");
+          }}
+        >
+          Work
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem
+              onClick={() => {
+                navigate("/work#raytheon");
+              }}
+            >
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/work#raytheon");
+                }}
+              >
+                Raytheon (2022 - Present)
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/work#ukaea")}}>UKAEA (2020 - 2021)</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/work#ukaea");
+                }}
+              >
+                UKAEA (2020 - 2021)
+              </SidebarMenuButton>
             </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-         
+          </SidebarMenu>
+        </SidebarGroupContent>
 
-          <SidebarGroupLabel onClick={() => {navigate("/certs")}}>Certifcations</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+        <SidebarGroupLabel
+          onClick={() => {
+            navigate("/certs");
+          }}
+        >
+          Certifcations
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/certs#aws")}}>AWS</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/certs#aws");
+                }}
+              >
+                AWS
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/certs#comptia")}}>CompTIA</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/certs#comptia");
+                }}
+              >
+                CompTIA
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/certs#azure")}}>Azure</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/certs#azure");
+                }}
+              >
+                Azure
+              </SidebarMenuButton>
             </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
+          </SidebarMenu>
+        </SidebarGroupContent>
 
-          <SidebarGroupLabel onClick={() => {navigate("/cpd")}}>Proffesional Development</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+        <SidebarGroupLabel
+          onClick={() => {
+            navigate("/cpd");
+          }}
+        >
+          Proffesional Development
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/cpd#bcs")}}>BCS Membership</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/cpd#bcs");
+                }}
+              >
+                BCS Membership
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/cpd#online")}}>Online Training</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/cpd#online");
+                }}
+              >
+                Online Training
+              </SidebarMenuButton>
             </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
+          </SidebarMenu>
+        </SidebarGroupContent>
 
-
-          <SidebarGroupLabel onClick={() => {navigate("/projects")}}>Projects</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+        <SidebarGroupLabel
+          onClick={() => {
+            navigate("/projects");
+          }}
+        >
+          Projects
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/projects#raytheon")}}>Portfolio</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/projects#raytheon");
+                }}
+              >
+                Portfolio
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/projects#raytheon")}}>JsUseDocs</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/projects#raytheon");
+                }}
+              >
+                JsUseDocs
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/projects#raytheon")}}>LiveQuery</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/projects#raytheon");
+                }}
+              >
+                LiveQuery
+              </SidebarMenuButton>
             </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
+          </SidebarMenu>
+        </SidebarGroupContent>
 
-          <SidebarGroupLabel onClick={() => {navigate("/edu")}}>Education</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+        <SidebarGroupLabel
+          onClick={() => {
+            navigate("/edu");
+          }}
+        >
+          Education
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/edu#uni")}}>BSc Computer Security</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/edu#uni");
+                }}
+              >
+                BSc Computer Security
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/edu#chs")}}>Cardiff High School</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/edu#chs");
+                }}
+              >
+                Cardiff High School
+              </SidebarMenuButton>
             </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
+          </SidebarMenu>
+        </SidebarGroupContent>
 
-          <SidebarGroupLabel onClick={() => {navigate("/activities")}}>External Activities</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+        <SidebarGroupLabel
+          onClick={() => {
+            navigate("/activities");
+          }}
+        >
+          External Activities
+        </SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/activities#enactus")}}>Enactus</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/activities#enactus");
+                }}
+              >
+                Enactus
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => {navigate("/activities#cyc")}}>Cardiff Youth Council</SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/activities#cyc");
+                }}
+              >
+                Cardiff Youth Council
+              </SidebarMenuButton>
             </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarContent>
 
-
-        </SidebarContent>
-
-        
-
-        <SidebarFooter >
-          <a href="/EdwardJones-Resume-Sanitised.pdf">
-            <SidebarMenuButton >Download CV</SidebarMenuButton>
-            </a>
-        </SidebarFooter>
-      </Sidebar>
-    )
-  }
-  
+      <SidebarFooter className="border-t-2">
+        <a href="https://www.linkedin.com/in/ewrdad/">
+          <SidebarMenuButton>Get In Contact</SidebarMenuButton>
+        </a>
+        <a href="/EdwardJones-Resume-Sanitised.pdf">
+          <SidebarMenuButton>Download CV</SidebarMenuButton>
+        </a>
+      </SidebarFooter>
+    </Sidebar>
+  );
+}
