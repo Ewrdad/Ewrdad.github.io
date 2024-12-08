@@ -12,7 +12,7 @@ const textNameClass = "lg:text-9xl md:text-9xl sm:text-6xl text-6xl font-extrabo
 
     return (
 
-        <div className="self-start w-screen h-auto justify-between pt-5 items-left">
+        <div className="self-start w-[83vw] min-w-full h-auto justify-between pt-5 items-left">
 
             <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
 
@@ -22,7 +22,7 @@ const textNameClass = "lg:text-9xl md:text-9xl sm:text-6xl text-6xl font-extrabo
             </Toggle>
 
             {
-                toggleCode && <p className="align-middle w-full sm:w-1/2 p-10 border-4 border-red-800 bg-black/30 text-2xl">
+                toggleCode && <p className="align-middle w-full sm:w-1/2 p-10 border-4 border-red-800 bg-slate-800/40 text-2xl">
                     Coding this forward
                     
                 </p>
@@ -38,7 +38,7 @@ const textNameClass = "lg:text-9xl md:text-9xl sm:text-6xl text-6xl font-extrabo
             </Toggle>
 
 {
-                toggleChange && <div className="align-middle w-full sm:w-1/2  border-4 border-blue-700 p-10 bg-black/30 text-2xl">
+                toggleChange && <div className="align-middle w-full sm:w-1/2  border-4 border-blue-700 p-10 bg-slate-800/40 text-2xl">
 
                     Embracing change
                     Embracing change
@@ -68,7 +68,7 @@ const textNameClass = "lg:text-9xl md:text-9xl sm:text-6xl text-6xl font-extrabo
 
 
 {
-                toggleImpact && <p className="align-middle w-full sm:w-1/2 border-green-800 border-solid p-10 border-4 bg-black/30 text-2xl">
+                toggleImpact && <p className="align-middle w-full sm:w-1/2 border-green-800 border-solid p-10 border-4 bg-slate-800/40 text-2xl">
                         
                         Impacting the future
                 </p>

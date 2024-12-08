@@ -1,5 +1,6 @@
 import  { useEffect } from "react";
 import { useLocation } from "react-router";
+import { AccordionContent, Accordion, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 
 export const CPD = () => {
@@ -48,9 +49,18 @@ This is a place to just list various course I have taken on Udemy which are part
     
     
     </p>
-    <h4>Solutions Architect Assocaite by Stephen Maerk</h4>
-    <img src="https://udemy-certificate.s3.amazonaws.com/image/UC-87b59a11-95ee-4ffd-a9d7-5121f4058ec7.jpg" alt="Udemy Certificate" />
     
+    <Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Ultimate AWS Certified Solutions Architect Associate 2025</AccordionTrigger>
+    <AccordionContent>
+    <img src="https://udemy-certificate.s3.amazonaws.com/image/UC-87b59a11-95ee-4ffd-a9d7-5121f4058ec7.jpg" alt="Udemy Certificate" />
+
+    </AccordionContent>
+  </AccordionItem>
+  
+</Accordion>
+
     <br />
 
 </div>
