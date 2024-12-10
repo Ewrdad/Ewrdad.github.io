@@ -9,6 +9,7 @@ import { CPD } from "./pages/CPD/CPD";
 import { Projects } from "./pages/projects/Projects";
 import { Activities } from "./pages/activities/Activities";
 import { Edu } from "./pages/edu/Edu";
+import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
       >
         <SidebarProvider>
           <AppSidebar />
-          <div className="block bg-slate-400/50">
+          <div className="block bg-slate-400/80">
             <div className=" w-screen h-10 items-center lg:hidden md:hidden bg-slate-900 text-white flex text-xl">
               <SidebarTrigger className="flex" />
 
@@ -32,6 +33,14 @@ function App() {
 
             <div className="flex flex-col w-3/4 ">
               <div className="self-start w-11/12 h-auto justify-between pt-5 items-left">
+                <Alert className="bg-yellow-600 border-2 border-black m-10">
+                  <AlertTitle>Heads up!</AlertTitle>
+                  <AlertDescription>
+                    This website is a work in progress. All information may not
+                    be accurate, and the page may not be fully functional.
+                    Please check back later for updates.
+                  </AlertDescription>
+                </Alert>
                 {/* <RouterProvider router={router} /> */}
                 <Routes>
                   <Route path="*" element={<Home />} />
