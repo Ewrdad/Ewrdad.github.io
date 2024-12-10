@@ -241,6 +241,9 @@ export function AppSidebar() {
         <a href="/EdwardJones-Resume-Sanitised.pdf">
           <SidebarMenuButton>Download CV</SidebarMenuButton>
         </a>
+        <a href="/EdwardJones-Resume-Sanitised.pdf">
+          <SidebarMenuButton>Reccomended Resources</SidebarMenuButton>
+        </a>
       </SidebarFooter>
     </Sidebar>
   );
