@@ -10,6 +10,7 @@ import { Projects } from "./pages/projects/Projects";
 import { Activities } from "./pages/activities/Activities";
 import { Edu } from "./pages/edu/Edu";
 import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
+import { Resources } from "./pages/Resources/Resources";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                     <Route path="certs" element={<Certs />} />
                     <Route path="activities" element={<Activities />} />
                     <Route path="edu" element={<Edu />} />
+                    <Route path="resources" element={<Resources />} />
                   </Routes>
                 </div>
               </div>
