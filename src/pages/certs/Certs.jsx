@@ -30,7 +30,7 @@ export const Certs = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
+            <h1 id="aws" className="text-6xl">
               Solutions Architect Associate
             </h1>
           </div>
@@ -61,9 +61,7 @@ export const Certs = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
-              Certified Cloud Practitioner
-            </h1>
+            <h1 className="text-6xl">Certified Cloud Practitioner</h1>
           </div>
           <div className="flex">
             <Separator
@@ -89,7 +87,7 @@ export const Certs = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
+            <h1 id="comptia" className="text-6xl">
               Security+
             </h1>
           </div>
@@ -119,7 +117,7 @@ export const Certs = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
+            <h1 id="azure" className="text-6xl">
               Azure Fundementals
             </h1>
           </div>
@@ -148,9 +146,7 @@ export const Certs = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
-              Security and Complaince Fundementals
-            </h1>
+            <h1 className="text-6xl">Security and Complaince Fundementals</h1>
           </div>
           <div className="flex">
             <Separator
@@ -176,9 +172,7 @@ export const Certs = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
-              AI Fundementals
-            </h1>
+            <h1 className="text-6xl">AI Fundementals</h1>
           </div>
           <div className="flex">
             <Separator

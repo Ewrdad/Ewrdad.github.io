@@ -17,6 +17,9 @@ export function AppSidebar() {
   return (
     <Sidebar className="h-full">
       <SidebarHeader className="border-b-2">
+        {
+          // MARK: Top
+        }
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
@@ -30,6 +33,9 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
 
+      {
+        // MARK: Work
+      }
       <SidebarContent>
         <SidebarGroupLabel
           onClick={() => {
@@ -65,6 +71,9 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroupContent>
 
+        {
+          // MARK: Certs
+        }
         <SidebarGroupLabel
           onClick={() => {
             navigate("/certs");
@@ -104,6 +113,9 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroupContent>
 
+        {
+          // MARK: CPD
+        }
         <SidebarGroupLabel
           onClick={() => {
             navigate("/cpd");
@@ -134,6 +146,9 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroupContent>
 
+        {
+          // MARK: Projects
+        }
         <SidebarGroupLabel
           onClick={() => {
             navigate("/projects");
@@ -146,7 +161,7 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 onClick={() => {
-                  navigate("/projects#raytheon");
+                  navigate("/projects#portfolio");
                 }}
               >
                 Portfolio
@@ -155,7 +170,7 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 onClick={() => {
-                  navigate("/projects#raytheon");
+                  navigate("/projects#jsusedocs");
                 }}
               >
                 JsUseDocs
@@ -164,7 +179,7 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 onClick={() => {
-                  navigate("/projects#raytheon");
+                  navigate("/projects#livequery");
                 }}
               >
                 LiveQuery
@@ -173,6 +188,9 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroupContent>
 
+        {
+          // MARK: Education
+        }
         <SidebarGroupLabel
           onClick={() => {
             navigate("/edu");
@@ -202,6 +220,10 @@ export function AppSidebar() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroupContent>
+
+        {
+          // MARK: Activities
+        }
 
         <SidebarGroupLabel
           onClick={() => {
@@ -233,6 +255,10 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarContent>
+
+      {
+        // MARK: Footer
+      }
 
       <SidebarFooter className="border-t-2">
         <a href="https://www.linkedin.com/in/ewrdad/">

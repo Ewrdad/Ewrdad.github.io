@@ -1,12 +1,12 @@
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
 
-export const Portfolio = () => {
+export const JsUseDocs = () => {
   return (
     <>
       <Accordion type="single" collapsible>
@@ -15,8 +15,8 @@ export const Portfolio = () => {
             <div className="p-5">
               <div className="flex w-[60vw] justify-between no-underline hover:no-underline">
                 <div className="flex w-full">
-                  <h1 id="portfolio" className="text-6xl">
-                    Portfolio
+                  <h1 id="jsusedocs" className="text-6xl">
+                    JsUseDocs
                   </h1>
                 </div>
                 <div className="flex">
@@ -26,9 +26,9 @@ export const Portfolio = () => {
                   />
                 </div>
                 <div className="flex-col text-3xl w-1/4 justify-items-start justify-start">
-                  <h1>Javascript</h1>
-                  <h1>React</h1>
-                  <h1>TailwindCSS/ShadcnUI</h1>
+                  <h1>NodeJs</h1>
+                  <h1>Regex/Searching</h1>
+                  <h1>JSDoc </h1>
                 </div>
               </div>
             </div>
@@ -37,17 +37,17 @@ export const Portfolio = () => {
             <div className="text-xl max-w-[60vw]">
               <h3 className="font-bold">Goal:</h3>
               <p>
-                Have a way to showcase and share information about myself in a
-                dynamic way that provides greater value than a CV. To
-                effectively create a wiki on my proffesional behavious and
-                projects.
+                To create a querying tool for JSDocs that would allow for
+                developing dev tools similar to that which rely on stricter
+                systems(eg. typescript). The goals here are to have it be
+                flexible, non-prescriptive and file based. Originally developed
+                to support JsUseDocs tools
               </p>
               <h3 className="font-bold">Status</h3>
               <p>
                 {" "}
-                Basic working version. Currently just working on improving the
-                content element then can go back and clean UI. Mobile experience
-                is currently not great.
+                Has a working version public which should be stable for use.
+                Working on more advanced use cases
               </p>
             </div>
           </AccordionContent>

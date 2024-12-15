@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
-import { Separator } from "@/components/ui/separator";
 import { Portfolio } from "./portfolio/Portfolio";
+import { JsUseDocs } from "./JsUseDocs/JsUseDocs";
+import { JsUseDocsTools } from "./JsUseDocsTools/JsUseDocsTools";
+import { LiveQuery } from "./LiveQuery/LiveQuery";
 
 export const Projects = () => {
   const location = useLocation();
@@ -27,106 +29,12 @@ export const Projects = () => {
   }, [location]);
 
   return (
-    <>
+    <div className=" min-w-max p-5 justify-between w-[60vw] max-w-[60vw]">
+      <br className="w-full" />
       <Portfolio />
-      <div className="p-5">
-        <div className="flex w-full justify-between">
-          <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
-              JsUseDocs
-            </h1>
-          </div>
-          <div className="flex">
-            <Separator
-              orientation="vertical"
-              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
-            />
-          </div>
-          <div className="flex-col text-3xl w-1/4">
-            <h1>NodeJs</h1>
-            <h1>Regex/Searching</h1>
-            <h1>JSDoc </h1>
-          </div>
-        </div>
-        <div>
-          <p className="text-xl w-full">
-            Although membership of BCS is often described only as beneficial as
-            the effort you put in, I have found it to be a great way to keep up
-            to date with the latest trends in the industry. I have been able to
-            attend many events and webinars that have helped me to keep my
-            skills fresh and learn about new technologies. I have also been able
-            to network with other professionals in the industry and learn from
-            their experiences. I have found that being a member of BCS has
-            helped me to stay motivated and focused on my career goals.
-          </p>
-        </div>
-      </div>
-
-      <div className="p-5">
-        <div className="flex w-full justify-between">
-          <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
-              JsUseDocs Tools
-            </h1>
-          </div>
-          <div className="flex">
-            <Separator
-              orientation="vertical"
-              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
-            />
-          </div>
-          <div className="flex-col text-3xl w-1/4">
-            <h1>Electron/React</h1>
-            <h1>ShacnUI/TailwindCSS</h1>
-            <h1>Javascript/NodeJS</h1>
-          </div>
-        </div>
-        <div>
-          <p className="text-xl w-full">
-            Although membership of BCS is often described only as beneficial as
-            the effort you put in, I have found it to be a great way to keep up
-            to date with the latest trends in the industry. I have been able to
-            attend many events and webinars that have helped me to keep my
-            skills fresh and learn about new technologies. I have also been able
-            to network with other professionals in the industry and learn from
-            their experiences. I have found that being a member of BCS has
-            helped me to stay motivated and focused on my career goals.
-          </p>
-        </div>
-      </div>
-
-      <div className="p-5">
-        <div className="flex w-full justify-between">
-          <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
-              LiveQuery
-            </h1>
-          </div>
-          <div className="flex">
-            <Separator
-              orientation="vertical"
-              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
-            />
-          </div>
-          <div className="flex-col text-3xl w-1/4">
-            <h1>Websocket</h1>
-            <h1>ShacnUI/TailwindCSS</h1>
-            <h1>Javascript/NodeJS</h1>
-          </div>
-        </div>
-        <div>
-          <p className="text-xl w-full">
-            Although membership of BCS is often described only as beneficial as
-            the effort you put in, I have found it to be a great way to keep up
-            to date with the latest trends in the industry. I have been able to
-            attend many events and webinars that have helped me to keep my
-            skills fresh and learn about new technologies. I have also been able
-            to network with other professionals in the industry and learn from
-            their experiences. I have found that being a member of BCS has
-            helped me to stay motivated and focused on my career goals.
-          </p>
-        </div>
-      </div>
-    </>
+      <JsUseDocs />
+      <JsUseDocsTools />
+      <LiveQuery />
+    </div>
   );
 };

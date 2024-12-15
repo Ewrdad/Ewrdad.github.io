@@ -36,7 +36,7 @@ export const CPD = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
+            <h1 id="bcs" className="text-6xl">
               BCS Membership
             </h1>
           </div>
@@ -67,7 +67,7 @@ export const CPD = () => {
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
-            <h1 id="raytheon" className="text-6xl">
+            <h1 id="online" className="text-6xl">
               Online Training
             </h1>
           </div>

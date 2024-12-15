@@ -1,30 +1,101 @@
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 
 export const Activities = () => {
+  const location = useLocation();
 
-    return (
-        <div>
-            <h1>External Activities</h1>
-            <p>Here are some of the activities I have been involved in outside of work.</p>
+  useEffect(() => {
+    // Function to scroll to the element with the ID specified in the hash
+    const scrollToHash = () => {
+      const id = location.hash.substring(1); // Remove the '#'
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
 
-            <h1 id="bcs" className="text-9xl">Enactus USW
+    // Scroll to the initial hash when the component mounts
+    scrollToHash();
+
+    // Add an event listener for hash changes
+    window.addEventListener("hashchange", scrollToHash);
+
+    // Clean up the event listener when the component unmounts
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, [location]);
+
+  return (
+    <div>
+      <div className="p-5">
+        <div className="flex w-full justify-between">
+          <div className="flex w-3/4">
+            <h1 id="enactus" className="text-6xl">
+              Enactus USW
             </h1>
-    <h2 className="text-6xl">Member and President</h2>
-    <br />
-    <p className="text-xl">
-    Starting on an introductory academy to rapidly upskill in agile software development practices quickly embraced into developing  a wide range of software tools including being a technical lead on an internal project. Although primarily software development also tackled things such as testing, compliance  and architecture. Alongside plenty of work to do knowledge sharing internally. 
+          </div>
+          <div className="flex">
+            <Separator
+              orientation="vertical"
+              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
+            />
+          </div>
+          <div className="flex-col text-3xl w-1/4">
+            <h1>Member and President</h1>
 
-    </p>
-    <br />
+            <h1>(2018-2020)</h1>
+          </div>
+        </div>
+        <div className="text-xl">
+          <p className="text-xl w-full">
+            Started as a memebr in my first year, I fell in love with Enactus
+            and took over in my second year. A international society that works
+            to promote social enterprise and driving impact. Being there from
+            the societies founding, at USW, I was able to help it grow.
+          </p>
+          <p className="pt-6">
+            In my time there we were able to compete in the National Finals
+            twice! We also worked on many projects such as waste reuse schemes.
+          </p>
+        </div>
+      </div>
 
-    <h1 id="bcs" className="text-9xl">Cardif Youth Council
+      <div className="p-5">
+        <div className="flex w-full justify-between">
+          <div className="flex w-3/4">
+            <h1 id="cyc" className="text-6xl">
+              Cardiff Youth Council
             </h1>
-    <h2 className="text-6xl">Member and Vice President</h2>
-    <br />
-    <p className="text-xl">
-    Starting on an introductory academy to rapidly upskill in agile software development practices quickly embraced into developing  a wide range of software tools including being a technical lead on an internal project. Although primarily software development also tackled things such as testing, compliance  and architecture. Alongside plenty of work to do knowledge sharing internally. 
+          </div>
+          <div className="flex">
+            <Separator
+              orientation="vertical"
+              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
+            />
+          </div>
+          <div className="flex-col text-3xl w-1/4">
+            <h1>Member and vice-chair</h1>
 
-    </p>
-    <br />
-</div>
-    )
-}
+            <h1>(2016-2018)</h1>
+          </div>
+        </div>
+        <div className="text-xl">
+          <p className="text-xl w-full">
+            Working to represent the views of young people in Cardiff I had many
+            opportunites to help improve lives of people in Cardiff. This
+            included an international exchange to Germany and many event
+            appearances.
+          </p>
+
+          <h3 className="pt-6">Here is somethings we worked on: </h3>
+          <a href="https://mindhub.wales/">
+            <Button className="w-full">
+              Mindhub: A mental health platform for young people
+            </Button>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
