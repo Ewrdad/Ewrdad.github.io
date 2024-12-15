@@ -12,6 +12,7 @@ import { Edu } from "./pages/edu/Edu";
 import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 import { Resources } from "./pages/Resources/Resources";
 import { useEffect, useState } from "react";
+import { Button } from "./components/ui/button";
 
 function App() {
   const location = useLocation();
@@ -55,9 +56,23 @@ function App() {
                   <Alert className="bg-yellow-600 border-2 border-black m-10">
                     <AlertTitle>Heads up!</AlertTitle>
                     <AlertDescription>
-                      This website is a work in progress. All information may
-                      not be accurate, and the page may not be fully functional.
-                      Please check back later for updates.
+                      <p>
+                        This website is a work in progress. All information may
+                        not be 100% accurate, and the page may not be fully
+                        functional. Please check back later for updates.
+                      </p>
+
+                      <a
+                        href="https://forms.gle/9GJrseQwnfifaHVSA"
+                        target="_blank"
+                        rel="noreferrer"
+                        className=""
+                      >
+                        <Button className="w-full mt-5">
+                          Got feedback? Let me know! :
+                          https://forms.gle/9GJrseQwnfifaHVSA
+                        </Button>
+                      </a>
                     </AlertDescription>
                   </Alert>
                   {/* <RouterProvider router={router} /> */}
