@@ -94,8 +94,9 @@ export const Home = () => {
         {toggleImpact && (
           <p className="align-middle w-full sm:w-1/2 border-green-800 border-solid p-10 border-4 bg-slate-800/40 text-2xl">
             The most important thing in all work is the impact at the end and
-            its good not to lose sight of that. Its easy to get lost in "pretty"
-            technicalities and you must remain focused on impact
+            its good not to lose sight of that. Its easy to get lost in
+            &quot;pretty&quot; technicalities and you must remain focused on
+            impact
           </p>
         )}
       </div>

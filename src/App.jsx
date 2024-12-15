@@ -2,7 +2,7 @@ import "./App.css";
 import { AppSidebar } from "./sidebar/sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Home } from "./pages/Home/Home";
-import { HashRouter, Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import { Work } from "./pages/work/Work";
 import { Certs } from "./pages/certs/Certs";
 import { CPD } from "./pages/CPD/CPD";
@@ -11,16 +11,33 @@ import { Activities } from "./pages/activities/Activities";
 import { Edu } from "./pages/edu/Edu";
 import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 import { Resources } from "./pages/Resources/Resources";
+import { useEffect, useState } from "react";
 
 function App() {
+  const location = useLocation();
+  const [backgroundImage, setBackgroundImage] = useState("background_glos.jpg");
+
+  useEffect(() => {
+    const backgroundImages = [
+      "background_glos.jpg",
+      "bg_usw.jpg",
+      "bg_cardiff.jpg",
+      "bg_abingdon.jpg",
+      "bg_grad.jpg",
+      "bg_prid.jpg",
+    ];
+
+    //Picks a random background image
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+    setBackgroundImage(backgroundImages[randomIndex]);
+  }, [location.pathname]);
+
   return (
-    <HashRouter>
+    <>
       <div
-        className="bg-slate-500 h-full w-screen inline-block bg-cover bg-center bg-no-repeat min-h-screen bg-fixed"
+        className="bg-slate-500 h-full w-screen inline-block bg-cover bg-center bg-no-repeat min-h-screen bg-fixed ease-in-out transition-all duration-1000"
         style={{
-          backgroundImage: `url(${
-            import.meta.env.BASE_URL
-          }background_glos.jpg)`,
+          backgroundImage: `url(${import.meta.env.BASE_URL}${backgroundImage})`,
         }}
       >
         <div className="bg-slate-400/80">
@@ -60,7 +77,7 @@ function App() {
           </SidebarProvider>
         </div>
       </div>
-    </HashRouter>
+    </>
   );
 }
 
