@@ -27,6 +27,9 @@ export const Certs = () => {
 
   return (
     <div>
+      {
+        // MARK: AWS
+      }
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
@@ -84,6 +87,10 @@ export const Certs = () => {
         </div>
       </div>
 
+      {
+        // MARK: CompTIA
+      }
+
       <div className="p-5">
         <div className="flex w-full justify-between">
           <div className="flex w-3/4">
@@ -100,7 +107,7 @@ export const Certs = () => {
           <div className="flex-col text-3xl w-1/4">
             <h1>CompTIA</h1>
 
-            <h1>(2023-2027)</h1>
+            <h1>(2023-2026)</h1>
           </div>
         </div>
         <div>
@@ -113,6 +120,10 @@ export const Certs = () => {
           </p>
         </div>
       </div>
+
+      {
+        // MARK: Azure
+      }
 
       <div className="p-5">
         <div className="flex w-full justify-between">
