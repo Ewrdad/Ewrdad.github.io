@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 export const JsUseDocs = () => {
@@ -49,6 +50,9 @@ export const JsUseDocs = () => {
                 Has a working version public which should be stable for use.
                 Working on more advanced use cases
               </p>
+              <a href="https://www.npmjs.com/package/jsusedocs-core">
+                <Button className="w-full">JSUseDocs On NPM</Button>
+              </a>
             </div>
           </AccordionContent>
         </AccordionItem>
