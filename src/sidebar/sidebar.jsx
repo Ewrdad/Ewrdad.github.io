@@ -252,6 +252,15 @@ export function AppSidebar() {
                 Cardiff Youth Council
               </SidebarMenuButton>
             </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                onClick={() => {
+                  navigate("/activities#3d");
+                }}
+              >
+                3D Printing Hobbiest
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarContent>

@@ -96,6 +96,43 @@ export const Activities = () => {
           </a>
         </div>
       </div>
+
+      <div className="p-5">
+        <div className="flex w-full justify-between">
+          <div className="flex w-3/4">
+            <h1 id="3d" className="text-6xl">
+              3D Printing Hobbiest
+            </h1>
+          </div>
+          <div className="flex">
+            <Separator
+              orientation="vertical"
+              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
+            />
+          </div>
+          <div className="flex-col text-3xl w-1/4">
+            <h1>Modified Ender 3</h1>
+
+            <h1></h1>
+          </div>
+        </div>
+        <div className="text-xl">
+          <p className="text-xl w-full">
+            Taking some time to enjoy 3D Printing, largely in PLA but
+            experimenting with other materials. This includes general fidgets
+            and cliches of 3d printing, but also aiming to solve problems in my
+            day to day life. This includes things such as cup holders and other
+            modifications for my partners wheelchair.
+          </p>
+
+          <p className="pt-6">
+            This includes some limited work with CAD software to design my own
+            stl files including thos designed to work with external
+            requirements. This is largely done with tinkerCAD which does what
+            the job mostly.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
