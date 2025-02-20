@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
+import RISKMNG01 from "./RISKMNG01.png";
 
 export const CPD = () => {
   const location = useLocation();
@@ -96,6 +97,36 @@ export const CPD = () => {
                   src="https://udemy-certificate.s3.amazonaws.com/image/UC-87b59a11-95ee-4ffd-a9d7-5121f4058ec7.jpg"
                   alt="Udemy Certificate"
                 />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
+
+      <div className="p-5">
+        <div className="flex w-full justify-between">
+          <div className="flex w-3/4">
+            <h1 className="text-6xl">Online Training</h1>
+          </div>
+          <div className="flex">
+            <Separator
+              orientation="vertical"
+              className="bg-slate-800 w-0.5 mr-10 sm:block hidden "
+            />
+          </div>
+          <div className="flex-col text-3xl w-1/4">
+            <h1>Packt</h1>
+          </div>
+        </div>
+
+        <div>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                Risk Management for Cyber Security Managers
+              </AccordionTrigger>
+              <AccordionContent>
+                <img src={RISKMNG01} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
