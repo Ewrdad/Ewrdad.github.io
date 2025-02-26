@@ -1,8 +1,14 @@
-# React + Vite
+# Edwards (ewrdad) Portfolio site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Just a simple site to act as a live CV and a bit of a playground
 
-Currently, two official plugins are available:
+## FAQ
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Can I borrow code?
+Feel free to , although this isnt the best code I can do and make sure you aren't pretending to be me.
+
+### Why no tests?
+This website has no advanced logic currently so tests arent fully required, and it'll speed me up adding stuff. This may change with time
+
+### What can I do with the shared resources?
+Feel free to use them anywhere. They are there to spread knowledge and to help people learn about topics. 
