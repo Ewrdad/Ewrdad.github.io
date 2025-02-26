@@ -39,6 +39,34 @@ export const Self = () => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+
+      {
+        // MARK: Cheat sheets
+      }
+      <h1 className="font-bold text-3xl">Cheat sheets</h1>
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>
+            Secure Software development. Whistle stop tour
+          </AccordionTrigger>
+          <AccordionContent>
+            <a
+              href="/Resources/DevSecOps/QuickDevSecOps.svg"
+              target="_blank"
+              download
+            >
+              <Button className="w-full m-1">SVG Download</Button>
+            </a>
+            <a
+              href="/Resources/DevSecOps/QuickDevSecOps.excalidraw"
+              target="_blank"
+              download
+            >
+              <Button className="w-full m-1">Excalidraw Download</Button>
+            </a>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   );
 };
