@@ -65,7 +65,7 @@ Before editing individual pages, extract the repeated patterns so mobile respons
 
 1. **Extract `src/hooks/use-hash-scroll.js`**
    - Consolidate the duplicated `scrollToHash` `useEffect` (currently copy-pasted across `Work`, `Edu`, `Certs`, `CPD`, `Activities`, `Projects`).
-   - Handle `location.hash` smoothly on mount and hash change.
+   - Note that `src/main.jsx` uses `HashRouter` from `react-router`; read `location.hash` via `useLocation()` and scroll smoothly on mount and hash change.
    - Pair with `scroll-mt-20 md:scroll-mt-6` on anchored headings so hash jumps clear the sticky mobile header.
 
 2. **Create `src/components/PageSection.jsx`**
@@ -120,7 +120,8 @@ Before editing individual pages, extract the repeated patterns so mobile respons
      - Add `cursor-pointer` to clickable `SidebarGroupLabel` items and ensure touch-friendly item spacing on mobile.
    - In `src/components/ui/sidebar.jsx`:
      - Add an `sr-only` `<SheetTitle>Navigation</SheetTitle>` and `<SheetDescription>Site navigation menu</SheetDescription>` inside mobile `SheetContent` to satisfy Radix Dialog accessibility requirements and eliminate console warnings.
-     - Verify the mobile drawer width (`--sidebar-width: 18rem`, `max-w-[85vw]`) fits comfortably on small 320px–375px screens and closes cleanly on backdrop tap, Escape key, or item selection.
+     - Remove `[&>button]:hidden` (or add a visible close button in the mobile drawer header) so users have an explicit close affordance in addition to backdrop tap, Escape key, and nav item selection.
+     - Verify the mobile drawer width (`--sidebar-width: 18rem`, `max-w-[85vw]`) fits comfortably on small 320px–375px screens.
 
 ---
 
@@ -171,7 +172,7 @@ Write focused Vitest + React Testing Library tests covering the new primitives a
    - Renders `SidebarProvider` + `AppSidebar` in mobile viewport (`matchMedia` mocked to `< 768px`).
    - Opens the mobile drawer via `SidebarTrigger`, clicks a nav item (e.g. `Work` or `Raytheon`), asserts navigation occurred **and** the mobile drawer closes automatically.
 3. **`PageSection` & `ProjectAccordionItem` (`src/components/PageSection.test.jsx`)**: verifies IDs, titles, metadata rendering, and accordion expand/collapse interaction.
-4. **Route smoke tests (`src/App.test.jsx`)**: renders all 8 routes (`/`, `/work`, `/certs`, `/cpd`, `/projects`, `/edu`, `/activities`, `/resources`) without errors or missing-title accessibility warnings.
+4. **Route smoke tests (`src/App.test.jsx`)**: wraps `<App />` in `MemoryRouter` (matching `HashRouter` route structure in `src/main.jsx`) and renders all 8 routes (`/`, `/work`, `/certs`, `/cpd`, `/projects`, `/edu`, `/activities`, `/resources`) without errors or missing-title accessibility warnings.
 
 ### B. Headless Visual & Overflow Verification (No Long-Lived Servers)
 Run an isolated headless check (e.g., via `npm run capture:screenshot` if available, or a one-shot Vite preview + Playwright/Chromium verification script that starts, checks, and exits cleanly):
