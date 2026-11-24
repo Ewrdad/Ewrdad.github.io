@@ -82,15 +82,16 @@ Before editing individual pages, extract the repeated patterns so mobile respons
 
 3. **Create `src/pages/projects/ProjectAccordionItem.jsx`**
    - Reusable mobile-first accordion item for all 4 project entries (`Portfolio`, `JsUseDocs`, `JsUseDocsTools`, `LiveQuery`):
-     - Props: `id`, `title`, `stack` (array of technology strings), `children`.
+     - Props: `id` (optional — `JsUseDocsTools` currently has no anchor ID), `title`, `stack` (array of technology strings), `children`.
      - Uses `w-full` (no `w-[60vw]`, `max-w-[60vw]`, `min-w-max`, or `overflow-y-scroll`).
      - Trigger layout: `flex flex-col items-start gap-2 text-left w-full pr-3 md:flex-row md:items-center md:justify-between md:gap-6`
-     - Title: `text-2xl sm:text-4xl md:text-5xl font-bold break-words` with `id` and `scroll-mt-20 md:scroll-mt-6`.
+     - Title: `text-2xl sm:text-4xl md:text-5xl font-bold break-words` with optional `id` and `scroll-mt-20 md:scroll-mt-6`.
      - Tech stack: on mobile, clean wrap of compact tags/pills (`flex flex-wrap gap-1.5 text-xs sm:text-sm`); on desktop (`md:`), stacked or aligned cleanly beside a vertical `Separator`.
      - Content: `text-base sm:text-lg md:text-xl leading-relaxed space-y-3`.
 
-4. **Fix global button styling & wrapping (`src/index.css`, `src/components/ui/button.jsx`)**
+4. **Fix global button styling, wrapping & accordion alignment (`src/index.css`, `src/components/ui/button.jsx`, `src/components/ui/accordion.jsx`)**
    - Remove the stale Vite starter block in `src/index.css` lines 10–21 (`@media (prefers-color-scheme: light)` setting global `button { background-color: #334155 }`) that breaks ghost/transparent button backgrounds in light mode.
+   - Add `text-left gap-2` to `AccordionTrigger` in `src/components/ui/accordion.jsx` so multi-line accordion titles left-align cleanly on narrow screens across `CPD`, `Projects`, and `Resources` instead of centering like default `<button>` text.
    - Ensure full-width buttons with long labels can wrap cleanly when needed (either via a helper class `whitespace-normal h-auto py-2 text-center` on long CTA buttons or adjusting `Button` usage consistently).
 
 ---
