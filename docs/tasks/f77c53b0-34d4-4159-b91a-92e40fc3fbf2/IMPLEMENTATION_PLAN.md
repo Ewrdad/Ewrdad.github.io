@@ -20,7 +20,7 @@ This plan follows the principle of **"make the change easy, then make the change
 
 | Area | File(s) | Root Cause / Mobile Symptom |
 |---|---|---|
-| **App Shell & Width** | `src/App.jsx` | Outer wrapper uses `w-screen inline-block` (causes horizontal overflow & breaks flex sizing). Content column hardcodes `w-3/4` on all screens, crushing mobile content into ~280px and leaving a 25% blank strip on the right. `bg-fixed` causes background zoom/jitter on mobile Safari/iOS. |
+| **App Shell & Width** | `src/App.jsx` | Outer wrapper uses `w-screen inline-block` (causes horizontal overflow & breaks flex sizing). Translucent overlay (`bg-slate-400/80`) lacks `min-h-screen w-full`, causing it to cut off partway down short pages. Content column hardcodes `w-3/4` on all screens, crushing mobile content into ~280px and leaving a 25% blank strip on the right, and uses invalid classes (`justify-Arou`, `items-left`). `bg-fixed` causes background zoom/jitter on mobile Safari/iOS. |
 | **Mobile Top Bar** | `src/App.jsx` | Uses `w-screen h-10` (not sticky, invalid `w-100` class, tight touch target, no horizontal padding/gap). |
 | **WIP Alert Banner** | `src/App.jsx`, `src/components/ui/button.jsx` | `Alert` has `m-10` (40px margin on all sides). Feedback `Button` inherits `whitespace-nowrap` with a long URL string (`Got feedback? Let me know! : https://forms.gle/...`), forcing horizontal overflow on narrow screens. |
 | **Global Light-Mode CSS** | `src/index.css` | `@media (prefers-color-scheme: light) { button { background-color: #334155; } }` overrides transparent/ghost buttons (`SidebarTrigger`, `Toggle`, `AccordionTrigger`, `TabsTrigger`) with dark slate boxes. |
@@ -115,7 +115,7 @@ Before editing individual pages, extract the repeated patterns so mobile respons
    - In `AppSidebar`:
      - Call `const { isMobile, setOpenMobile } = useSidebar();`.
      - Create a `handleNavigate(to)` helper that calls `navigate(to)` and, if `isMobile`, calls `setOpenMobile(false)`.
-     - Use `handleNavigate` for all `SidebarMenuButton` and `SidebarGroupLabel` clicks (and external footer links if desired).
+     - Use `handleNavigate` for all `SidebarMenuButton` and `SidebarGroupLabel` clicks, and close the mobile drawer on `SidebarFooter` external/CV link clicks as well.
      - Remove the duplicate `onClick` handler on the Raytheon `SidebarMenuItem` (lines 49–53).
      - Add `cursor-pointer` to clickable `SidebarGroupLabel` items and ensure touch-friendly item spacing on mobile.
    - In `src/components/ui/sidebar.jsx`:
@@ -132,7 +132,7 @@ Before editing individual pages, extract the repeated patterns so mobile respons
      - Use a responsive container: `flex flex-col items-stretch gap-3 md:flex-row md:items-center md:gap-6`.
      - Replace broken `scale-[2]` + `text-8xl` icon styling with explicit responsive sizing (e.g., `[&_svg]:size-8 sm:[&_svg]:size-12 md:[&_svg]:size-16` or explicit icon `className="size-8 sm:size-12 md:size-14 shrink-0"` overriding `Toggle`'s default `[&_svg]:size-4`).
      - Use responsive heading typography: `text-4xl sm:text-6xl lg:text-8xl font-extrabold`.
-     - Set `Toggle` to `h-auto w-full md:w-auto justify-between md:justify-start px-3 py-3 sm:p-4 md:p-6` with clear active/hover colors and `aria-expanded={toggleX}` for accessibility.
+     - Set `Toggle` to `h-auto w-full md:w-auto justify-between md:justify-start px-3 py-3 sm:p-4 md:p-6` with `pressed={toggleX}` / `onPressedChange={setToggleX}` (instead of unmanaged `onClick`) so Radix `data-state` and `aria-pressed` stay accurate, and add clear active/hover colors.
      - Style expanded description panels for mobile readability: `w-full md:w-1/2 p-4 sm:p-6 md:p-8 border-4 ... bg-slate-900/60 text-white rounded-md text-base sm:text-xl md:text-2xl leading-relaxed`.
 
 2. **Profile/CV Pages (`Work.jsx`, `Edu.jsx`, `Certs.jsx`, `CPD.jsx`, `Activities.jsx`)**
@@ -140,7 +140,7 @@ Before editing individual pages, extract the repeated patterns so mobile respons
    - Migrate each entry block to `<PageSection id="..." title="..." meta={[...]}>`.
    - Page-specific polish:
      - `Activities.jsx`: add `whitespace-normal h-auto py-2.5 text-center` to the Mindhub `<Button>` so it wraps cleanly on mobile.
-     - `CPD.jsx`: add `w-full h-auto max-w-full rounded-md` to both certificate `<img>` tags, add `alt="Risk Management for Cyber Security Managers Certificate"` to the `RISKMNG01` image, and add `text-left` to `AccordionTrigger`.
+     - `CPD.jsx`: add `w-full h-auto max-w-full rounded-md` to both certificate `<img>` tags, add `alt="Risk Management for Cyber Security Managers Certificate"` to the `RISKMNG01` image, and add `text-left gap-2` to `AccordionTrigger`.
 
 3. **Projects (`Projects.jsx`, `Portfolio.jsx`, `JsUseDocs.jsx`, `JsUseDocsTools.jsx`, `LiveQuery.jsx`)**
    - In `Projects.jsx`: replace `min-w-max p-5 justify-between w-[60vw] max-w-[60vw]` with `w-full space-y-2`, remove the stray `<br className="w-full" />`, and use `useHashScroll()`.
@@ -188,7 +188,7 @@ Run an isolated headless check (e.g., via `npm run capture:screenshot` if availa
 1. Run `npm run lint` — must pass with 0 errors.
 2. Run `npm run test:unit` — all tests must pass.
 3. Run `npm run build` — must succeed cleanly.
-   - **Check `docs/tasks/`**: verify that building into `docs/` did not delete or corrupt `docs/tasks/f77c53b0-34d4-4159-b91a-92e40fc3fbf2/` before finishing.
+   - **Check `docs/tasks/`**: `vite.config.js` builds into `docs/` with Vite's default `emptyOutDir: true`, which wipes `docs/tasks/` on build. Immediately restore or preserve `docs/tasks/` (e.g., `git checkout -- docs/tasks` if tracked, or back up and restore `docs/tasks/` around `npm run build`) and verify `docs/tasks/f77c53b0-34d4-4159-b91a-92e40fc3fbf2/` is intact before finishing.
 
 ### D. Documentation Updates
 1. Update `src/pages/projects/portfolio/Portfolio.jsx` Status text (currently says `"Mobile experience is currently not great."`) to reflect the completed mobile improvements.
