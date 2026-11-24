@@ -4,9 +4,9 @@ import { Self } from "./Self/Self";
 
 export const Resources = () => {
   return (
-    <div>
-      <Tabs defaultValue="recomended" className="w-[60vw] p-5">
-        <TabsList className="w-full  bg-zinc-800 text-white">
+    <div className="w-full">
+      <Tabs defaultValue="recomended" className="w-full">
+        <TabsList className="w-full bg-zinc-800 text-white">
           <TabsTrigger value="recomended" className="w-full">
             Recomended
           </TabsTrigger>
@@ -14,10 +14,10 @@ export const Resources = () => {
             Self Made
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="recomended">
+        <TabsContent value="recomended" className="pt-4">
           <Recomended />
         </TabsContent>
-        <TabsContent value="self">
+        <TabsContent value="self" className="pt-4">
           <Self />
         </TabsContent>
       </Tabs>

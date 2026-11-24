@@ -3,23 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ... */
-
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #334155;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #334155;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;

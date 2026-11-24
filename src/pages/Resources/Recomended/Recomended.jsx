@@ -8,53 +8,67 @@ import { Button } from "@/components/ui/button";
 
 export const Recomended = () => {
   return (
-    <div className="text-xl">
+    <div className="text-base sm:text-lg md:text-xl space-y-6">
       {
         // MARK: Talks
       }
-      <h1 className="font-bold text-3xl">Talks</h1>
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>
-            Intentional Code - Minimalism in a World of Dogmatic Design - David
-            Whitney
-          </AccordionTrigger>
-          <AccordionContent>
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/8j4fhsLcT4k?si=XcGMkcwHTbO7aUBJ"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      <section>
+        <h2 className="font-bold text-2xl sm:text-3xl mb-2">Talks</h2>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1" className="border-slate-800/40">
+            <AccordionTrigger>
+              Intentional Code - Minimalism in a World of Dogmatic Design -
+              David Whitney
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="relative w-full aspect-video overflow-hidden rounded-md">
+                <iframe
+                  className="w-full h-full border-0"
+                  src="https://www.youtube.com/embed/8j4fhsLcT4k?si=XcGMkcwHTbO7aUBJ"
+                  title="YouTube video player"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
 
       {
         // MARK: Articles
       }
-      <h1 className="font-bold text-3xl hidden">Articles</h1>
+      <h2 className="font-bold text-2xl sm:text-3xl hidden">Articles</h2>
 
       {
         // MARK: Books
       }
-      <h1 className="font-bold text-3xl">Books</h1>
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>
-            Extreme Programming Explained by Kent Beck
-          </AccordionTrigger>
-          <AccordionContent>
-            <a href="https://amzn.eu/d/ioC4EQw">
-              <Button className="w-full">Amazon (Non-Affiliate)</Button>
-            </a>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      <section>
+        <h2 className="font-bold text-2xl sm:text-3xl mb-2">Books</h2>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1" className="border-slate-800/40">
+            <AccordionTrigger>
+              Extreme Programming Explained by Kent Beck
+            </AccordionTrigger>
+            <AccordionContent>
+              <Button
+                asChild
+                className="w-full whitespace-normal h-auto py-2.5 text-center"
+              >
+                <a
+                  href="https://amzn.eu/d/ioC4EQw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Amazon (Non-Affiliate)
+                </a>
+              </Button>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
     </div>
   );
 };
