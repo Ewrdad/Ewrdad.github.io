@@ -70,4 +70,46 @@ describe("useIsMobile", () => {
     });
     expect(result.current).toBe(false);
   });
+
+  it("supports legacy matchMedia addListener/removeListener API", () => {
+    const listeners = [];
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: 1024,
+    });
+    window.matchMedia = vi.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      addListener: (cb) => listeners.push(cb),
+      removeListener: (cb) => {
+        const idx = listeners.indexOf(cb);
+        if (idx >= 0) listeners.splice(idx, 1);
+      },
+    }));
+
+    const { result, unmount } = renderHook(() => useIsMobile());
+    expect(result.current).toBe(false);
+
+    act(() => {
+      window.innerWidth = 375;
+      listeners.forEach((cb) => cb());
+    });
+    expect(result.current).toBe(true);
+
+    unmount();
+    expect(listeners).toHaveLength(0);
+  });
+
+  it("fails safely when window.matchMedia is unavailable", () => {
+    Object.defineProperty(window, "innerWidth", {
+      writable: true,
+      configurable: true,
+      value: 375,
+    });
+    window.matchMedia = undefined;
+
+    const { result } = renderHook(() => useIsMobile());
+    expect(result.current).toBe(true);
+  });
 });

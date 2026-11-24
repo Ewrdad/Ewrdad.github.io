@@ -11,15 +11,16 @@ export function ProjectAccordionItem({ id, title, stack = [], children }) {
 
   return (
     <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1" className="border-slate-800/40">
+      <AccordionItem
+        id={id}
+        value="item-1"
+        className="border-slate-800/40 scroll-mt-20 md:scroll-mt-6"
+      >
         <AccordionTrigger className="py-4 hover:no-underline">
           <div className="flex flex-col items-start gap-2 text-left w-full pr-3 md:flex-row md:items-center md:justify-between md:gap-6">
-            <h2
-              id={id}
-              className="text-2xl sm:text-4xl md:text-5xl font-bold break-words scroll-mt-20 md:scroll-mt-6 md:flex-1"
-            >
+            <span className="text-2xl sm:text-4xl md:text-5xl font-bold break-words md:flex-1">
               {title}
-            </h2>
+            </span>
             {stackItems.length > 0 && (
               <>
                 <Separator

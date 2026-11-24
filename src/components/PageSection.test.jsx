@@ -25,12 +25,24 @@ describe("PageSection", () => {
     expect(screen.getByText("(2022-2024)")).toBeInTheDocument();
     expect(screen.getByText("Experience summary")).toBeInTheDocument();
   });
+  it("handles empty or string meta gracefully", () => {
+    render(
+      <PageSection title="Standalone Section" meta="Single Meta">
+        <p>Body text</p>
+      </PageSection>
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /standalone section/i })
+    ).toBeInTheDocument();
+    expect(screen.getByText("Single Meta")).toBeInTheDocument();
+  });
 });
 
 describe("ProjectAccordionItem", () => {
-  it("renders project title and stack tags and toggles accordion content", async () => {
+  it("renders project title and stack tags with valid button nesting and toggles accordion content", async () => {
     const user = userEvent.setup();
-    render(
+    const { container } = render(
       <ProjectAccordionItem
         id="portfolio"
         title="Portfolio"
@@ -40,13 +52,15 @@ describe("ProjectAccordionItem", () => {
       </ProjectAccordionItem>
     );
 
-    const heading = screen.getByRole("heading", { name: "Portfolio" });
-    expect(heading).toHaveAttribute("id", "portfolio");
-    expect(screen.getByText("Javascript")).toBeInTheDocument();
-    expect(screen.getByText("React")).toBeInTheDocument();
+    const anchorItem = container.querySelector("#portfolio");
+    expect(anchorItem).toBeInTheDocument();
+    expect(anchorItem.className).toContain("scroll-mt-20");
 
     const trigger = screen.getByRole("button", { name: /portfolio/i });
+    expect(trigger.querySelector("h1, h2, h3, h4, h5, h6")).toBeNull();
     expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByText("Javascript")).toBeInTheDocument();
+    expect(screen.getByText("React")).toBeInTheDocument();
 
     await user.click(trigger);
     expect(trigger).toHaveAttribute("aria-expanded", "true");

@@ -18,16 +18,18 @@ export const Self = () => {
           <AccordionItem value="item-1" className="border-slate-800/40">
             <AccordionTrigger>Tackling TDD for UI</AccordionTrigger>
             <AccordionContent>
-              <a
-                href="https://drive.google.com/file/d/1_72C2DbIEe7pMI57dP5keHWGroRGhB7k/view?usp=sharing"
-                target="_blank"
-                rel="noreferrer"
-                className="block"
+              <Button
+                asChild
+                className="w-full whitespace-normal h-auto py-2.5 text-center"
               >
-                <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                <a
+                  href="https://drive.google.com/file/d/1_72C2DbIEe7pMI57dP5keHWGroRGhB7k/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   View
-                </Button>
-              </a>
+                </a>
+              </Button>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -44,16 +46,18 @@ export const Self = () => {
               Using Tech in Self-Promotion for a Greener Environment
             </AccordionTrigger>
             <AccordionContent>
-              <a
-                href="https://www.linkedin.com/pulse/using-tech-self-promotion-greener-environment-edward-jones/"
-                target="_blank"
-                rel="noreferrer"
-                className="block"
+              <Button
+                asChild
+                className="w-full whitespace-normal h-auto py-2.5 text-center"
               >
-                <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                <a
+                  href="https://www.linkedin.com/pulse/using-tech-self-promotion-greener-environment-edward-jones/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   View on LinkedIN
-                </Button>
-              </a>
+                </a>
+              </Button>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -71,28 +75,32 @@ export const Self = () => {
             </AccordionTrigger>
             <AccordionContent>
               <div className="flex flex-col gap-2">
-                <a
-                  href="/Resources/DevSecOps/QuickDevSecOps.svg"
-                  target="_blank"
-                  rel="noreferrer"
-                  download
-                  className="block"
+                <Button
+                  asChild
+                  className="w-full whitespace-normal h-auto py-2.5 text-center"
                 >
-                  <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                  <a
+                    href={`${import.meta.env.BASE_URL}Resources/DevSecOps/QuickDevSecOps.svg`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                  >
                     SVG Download
-                  </Button>
-                </a>
-                <a
-                  href="/Resources/DevSecOps/QuickDevSecOps.excalidraw"
-                  target="_blank"
-                  rel="noreferrer"
-                  download
-                  className="block"
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  className="w-full whitespace-normal h-auto py-2.5 text-center"
                 >
-                  <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                  <a
+                    href={`${import.meta.env.BASE_URL}Resources/DevSecOps/QuickDevSecOps.excalidraw`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                  >
                     Excalidraw Download
-                  </Button>
-                </a>
+                  </a>
+                </Button>
               </div>
             </AccordionContent>
           </AccordionItem>

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -11,6 +12,60 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useNavigate } from "react-router";
+
+const NAV_SECTIONS = [
+  {
+    label: "Work",
+    to: "/work",
+    items: [
+      { label: "Raytheon (2022 - Present)", to: "/work#raytheon" },
+      { label: "UKAEA (2020 - 2021)", to: "/work#ukaea" },
+    ],
+  },
+  {
+    label: "Certifcations",
+    to: "/certs",
+    items: [
+      { label: "AWS", to: "/certs#aws" },
+      { label: "CompTIA", to: "/certs#comptia" },
+      { label: "Azure", to: "/certs#azure" },
+    ],
+  },
+  {
+    label: "Proffesional Development",
+    to: "/cpd",
+    items: [
+      { label: "BCS Membership", to: "/cpd#bcs" },
+      { label: "Online Training", to: "/cpd#online" },
+    ],
+  },
+  {
+    label: "Projects",
+    to: "/projects",
+    items: [
+      { label: "Portfolio", to: "/projects#portfolio" },
+      { label: "JsUseDocs", to: "/projects#jsusedocs" },
+      { label: "LiveQuery", to: "/projects#livequery" },
+    ],
+  },
+  {
+    label: "Education",
+    to: "/edu",
+    items: [
+      { label: "BSc Computer Security", to: "/edu#uni" },
+      { label: "Cardiff High School", to: "/edu#chs" },
+    ],
+  },
+  {
+    label: "External Activities",
+    to: "/activities",
+    items: [
+      { label: "Enactus", to: "/activities#enactus" },
+      { label: "Cardiff Youth Council", to: "/activities#cyc" },
+      { label: "3D Printing Hobbiest", to: "/activities#3d" },
+    ],
+  },
+];
 
 export function AppSidebar() {
   const navigate = useNavigate();
@@ -30,9 +85,6 @@ export function AppSidebar() {
   return (
     <Sidebar className="h-full">
       <SidebarHeader className="border-b-2 pr-10 md:pr-2">
-        {
-          // MARK: Top
-        }
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton onClick={() => handleNavigate("/")}>
@@ -42,216 +94,52 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
 
-      {
-        // MARK: Work
-      }
       <SidebarContent className="px-2 py-2">
-        <SidebarGroupLabel asChild>
-          <button
-            type="button"
-            className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
-            onClick={() => handleNavigate("/work")}
-          >
-            Work
-          </button>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/work#raytheon")}
+        {NAV_SECTIONS.map((section) => (
+          <Fragment key={section.to}>
+            <SidebarGroupLabel asChild>
+              <button
+                type="button"
+                className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
+                onClick={() => handleNavigate(section.to)}
               >
-                Raytheon (2022 - Present)
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/work#ukaea")}>
-                UKAEA (2020 - 2021)
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-
-        {
-          // MARK: Certs
-        }
-        <SidebarGroupLabel asChild>
-          <button
-            type="button"
-            className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
-            onClick={() => handleNavigate("/certs")}
-          >
-            Certifcations
-          </button>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/certs#aws")}>
-                AWS
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/certs#comptia")}
-              >
-                CompTIA
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/certs#azure")}>
-                Azure
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-
-        {
-          // MARK: CPD
-        }
-        <SidebarGroupLabel asChild>
-          <button
-            type="button"
-            className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
-            onClick={() => handleNavigate("/cpd")}
-          >
-            Proffesional Development
-          </button>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/cpd#bcs")}>
-                BCS Membership
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/cpd#online")}>
-                Online Training
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-
-        {
-          // MARK: Projects
-        }
-        <SidebarGroupLabel asChild>
-          <button
-            type="button"
-            className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
-            onClick={() => handleNavigate("/projects")}
-          >
-            Projects
-          </button>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/projects#portfolio")}
-              >
-                Portfolio
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/projects#jsusedocs")}
-              >
-                JsUseDocs
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/projects#livequery")}
-              >
-                LiveQuery
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-
-        {
-          // MARK: Education
-        }
-        <SidebarGroupLabel asChild>
-          <button
-            type="button"
-            className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
-            onClick={() => handleNavigate("/edu")}
-          >
-            Education
-          </button>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/edu#uni")}>
-                BSc Computer Security
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => handleNavigate("/edu#chs")}>
-                Cardiff High School
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-
-        {
-          // MARK: Activities
-        }
-        <SidebarGroupLabel asChild>
-          <button
-            type="button"
-            className="w-full cursor-pointer text-left hover:text-sidebar-foreground"
-            onClick={() => handleNavigate("/activities")}
-          >
-            External Activities
-          </button>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/activities#enactus")}
-              >
-                Enactus
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/activities#cyc")}
-              >
-                Cardiff Youth Council
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => handleNavigate("/activities#3d")}
-              >
-                3D Printing Hobbiest
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
+                {section.label}
+              </button>
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {section.items.map((item) => (
+                  <SidebarMenuItem key={item.to}>
+                    <SidebarMenuButton onClick={() => handleNavigate(item.to)}>
+                      {item.label}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </Fragment>
+        ))}
       </SidebarContent>
 
-      {
-        // MARK: Footer
-      }
       <SidebarFooter className="border-t-2">
-        <a
-          href="https://www.linkedin.com/in/ewrdad/"
-          target="_blank"
-          rel="noreferrer"
-          onClick={closeMobile}
-        >
-          <SidebarMenuButton>Get In Contact</SidebarMenuButton>
-        </a>
-        <a href="/EdwardJones-Resume-Sanitised.pdf" onClick={closeMobile}>
-          <SidebarMenuButton>Download CV</SidebarMenuButton>
-        </a>
+        <SidebarMenuButton asChild>
+          <a
+            href="https://www.linkedin.com/in/ewrdad/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMobile}
+          >
+            Get In Contact
+          </a>
+        </SidebarMenuButton>
+        <SidebarMenuButton asChild>
+          <a
+            href={`${import.meta.env.BASE_URL}EdwardJones-Resume-Sanitised.pdf`}
+            onClick={closeMobile}
+          >
+            Download CV
+          </a>
+        </SidebarMenuButton>
         <SidebarMenuButton onClick={() => handleNavigate("/resources")}>
           Resources
         </SidebarMenuButton>

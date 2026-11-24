@@ -20,16 +20,18 @@ export const JsUseDocs = () => {
         Has a working version public which should be stable for use. Working on
         more advanced use cases
       </p>
-      <a
-        href="https://www.npmjs.com/package/jsusedocs-core"
-        target="_blank"
-        rel="noreferrer"
-        className="block pt-2"
+      <Button
+        asChild
+        className="mt-2 w-full whitespace-normal h-auto py-2.5 text-center"
       >
-        <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+        <a
+          href="https://www.npmjs.com/package/jsusedocs-core"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           JSUseDocs On NPM
-        </Button>
-      </a>
+        </a>
+      </Button>
     </ProjectAccordionItem>
   );
 };

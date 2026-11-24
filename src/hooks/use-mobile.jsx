@@ -1,19 +1,45 @@
-import * as React from "react"
+import * as React from "react";
 
-const MOBILE_BREAKPOINT = 768
+export const MOBILE_BREAKPOINT = 768;
+
+function getIsMobileViewport() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+  return window.innerWidth < MOBILE_BREAKPOINT;
+}
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState(undefined)
+  const [isMobile, setIsMobile] = React.useState(getIsMobileViewport);
 
   React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    if (
+      typeof window === "undefined" ||
+      typeof window.matchMedia !== "function"
+    ) {
+      setIsMobile(getIsMobileViewport());
+      return undefined;
     }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    return () => mql.removeEventListener("change", onChange);
-  }, [])
 
-  return !!isMobile
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
+    const onChange = () => {
+      setIsMobile(getIsMobileViewport());
+    };
+
+    onChange();
+
+    if (typeof mql.addEventListener === "function") {
+      mql.addEventListener("change", onChange);
+      return () => mql.removeEventListener("change", onChange);
+    }
+
+    if (typeof mql.addListener === "function") {
+      mql.addListener(onChange);
+      return () => mql.removeListener(onChange);
+    }
+
+    return undefined;
+  }, []);
+
+  return isMobile;
 }

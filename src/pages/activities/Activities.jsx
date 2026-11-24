@@ -36,16 +36,18 @@ export const Activities = () => {
         </p>
 
         <h3 className="font-semibold pt-2">Here is somethings we worked on:</h3>
-        <a
-          href="https://mindhub.wales/"
-          target="_blank"
-          rel="noreferrer"
-          className="block"
+        <Button
+          asChild
+          className="w-full whitespace-normal h-auto py-2.5 text-center"
         >
-          <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+          <a
+            href="https://mindhub.wales/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Mindhub: A mental health platform for young people
-          </Button>
-        </a>
+          </a>
+        </Button>
       </PageSection>
 
       <PageSection

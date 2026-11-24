@@ -1,6 +1,7 @@
 import "./App.css";
 import { AppSidebar } from "./sidebar/sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Home } from "./pages/Home/Home";
 import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { Work } from "./pages/work/Work";
@@ -14,24 +15,23 @@ import { Resources } from "./pages/Resources/Resources";
 import { useEffect, useState } from "react";
 import { Button } from "./components/ui/button";
 
+const BACKGROUND_IMAGES = [
+  "background_glos.jpg",
+  "bg_usw.jpg",
+  "bg_cardiff.jpg",
+  "bg_abingdon.jpg",
+  "bg_grad.jpg",
+  "bg_prid.jpg",
+];
+
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [backgroundImage, setBackgroundImage] = useState("background_glos.jpg");
+  const [backgroundImage, setBackgroundImage] = useState(BACKGROUND_IMAGES[0]);
 
   useEffect(() => {
-    const backgroundImages = [
-      "background_glos.jpg",
-      "bg_usw.jpg",
-      "bg_cardiff.jpg",
-      "bg_abingdon.jpg",
-      "bg_grad.jpg",
-      "bg_prid.jpg",
-    ];
-
-    // Picks a random background image
-    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
-    setBackgroundImage(backgroundImages[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * BACKGROUND_IMAGES.length);
+    setBackgroundImage(BACKGROUND_IMAGES[randomIndex]);
   }, [location.pathname]);
 
   return (
@@ -46,7 +46,7 @@ function App() {
           <AppSidebar />
           <div className="flex flex-1 flex-col min-w-0 w-full">
             <header className="sticky top-0 z-30 flex h-14 w-full items-center gap-3 bg-slate-900/95 backdrop-blur px-3 text-white shadow-sm md:hidden">
-              <SidebarTrigger className="h-10 w-10 text-white hover:bg-slate-800 hover:text-white" />
+              <SidebarTrigger className="h-11 w-11 text-white hover:bg-slate-800 hover:text-white" />
               <button
                 type="button"
                 onClick={() => navigate("/")}
@@ -66,29 +66,36 @@ function App() {
                     Please check back later for updates.
                   </p>
 
-                  <a
-                    href="https://forms.gle/9GJrseQwnfifaHVSA"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block mt-4"
+                  <Button
+                    asChild
+                    className="mt-4 w-full whitespace-normal h-auto py-2.5 text-center"
                   >
-                    <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                    <a
+                      href="https://forms.gle/9GJrseQwnfifaHVSA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Got feedback? Let me know!
-                    </Button>
-                  </a>
+                    </a>
+                  </Button>
                 </AlertDescription>
               </Alert>
 
-              <Routes>
-                <Route path="*" element={<Home />} />
-                <Route path="work" element={<Work />} />
-                <Route path="projects" element={<Projects />} />
-                <Route path="cpd" element={<CPD />} />
-                <Route path="certs" element={<Certs />} />
-                <Route path="activities" element={<Activities />} />
-                <Route path="edu" element={<Edu />} />
-                <Route path="resources" element={<Resources />} />
-              </Routes>
+              <ErrorBoundary
+                resetKey={location.pathname}
+                onReset={() => navigate("/")}
+              >
+                <Routes>
+                  <Route path="*" element={<Home />} />
+                  <Route path="work" element={<Work />} />
+                  <Route path="projects" element={<Projects />} />
+                  <Route path="cpd" element={<CPD />} />
+                  <Route path="certs" element={<Certs />} />
+                  <Route path="activities" element={<Activities />} />
+                  <Route path="edu" element={<Edu />} />
+                  <Route path="resources" element={<Resources />} />
+                </Routes>
+              </ErrorBoundary>
             </main>
           </div>
         </SidebarProvider>

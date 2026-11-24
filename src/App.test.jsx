@@ -61,4 +61,38 @@ describe("App routes and interactions", () => {
       screen.queryByText(/understand the technology and talk in real terms/i)
     ).not.toBeInTheDocument();
   });
+
+  it("falls back to Home on unknown routes and renders feedback link without nested buttons", () => {
+    render(
+      <MemoryRouter initialEntries={["/non-existent-page"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByRole("button", { name: /code/i })).toBeInTheDocument();
+    const feedbackLink = screen.getByRole("link", {
+      name: /got feedback\? let me know!/i,
+    });
+    expect(feedbackLink).toHaveAttribute("rel", "noopener noreferrer");
+    expect(feedbackLink.querySelector("button")).toBeNull();
+  });
+
+  it("switches Resources tabs and expands accordions cleanly", async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter initialEntries={["/resources"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    await user.click(screen.getByRole("tab", { name: /self made/i }));
+    const deckTrigger = screen.getByRole("button", {
+      name: /tackling tdd for ui/i,
+    });
+    await user.click(deckTrigger);
+
+    const viewLink = screen.getByRole("link", { name: /^view$/i });
+    expect(viewLink).toBeVisible();
+    expect(viewLink.querySelector("button")).toBeNull();
+  });
 });

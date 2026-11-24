@@ -23,14 +23,14 @@ export const Recomended = () => {
             <AccordionContent>
               <div className="relative w-full aspect-video overflow-hidden rounded-md">
                 <iframe
-                  className="w-full h-full"
+                  className="w-full h-full border-0"
                   src="https://www.youtube.com/embed/8j4fhsLcT4k?si=XcGMkcwHTbO7aUBJ"
                   title="YouTube video player"
-                  frameBorder="0"
+                  loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                ></iframe>
+                />
               </div>
             </AccordionContent>
           </AccordionItem>
@@ -53,16 +53,18 @@ export const Recomended = () => {
               Extreme Programming Explained by Kent Beck
             </AccordionTrigger>
             <AccordionContent>
-              <a
-                href="https://amzn.eu/d/ioC4EQw"
-                target="_blank"
-                rel="noreferrer"
-                className="block"
+              <Button
+                asChild
+                className="w-full whitespace-normal h-auto py-2.5 text-center"
               >
-                <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                <a
+                  href="https://amzn.eu/d/ioC4EQw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Amazon (Non-Affiliate)
-                </Button>
-              </a>
+                </a>
+              </Button>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

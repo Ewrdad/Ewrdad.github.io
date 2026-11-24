@@ -90,4 +90,32 @@ describe("AppSidebar mobile drawer", () => {
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
   });
+
+  it("renders footer links without nested buttons and closes drawer on click", async () => {
+    const user = userEvent.setup();
+    renderMobileSidebar();
+
+    await user.click(screen.getByRole("button", { name: /toggle sidebar/i }));
+    await screen.findByRole("dialog", { name: /navigation/i });
+
+    const contactLink = screen.getByRole("link", { name: /get in contact/i });
+    expect(contactLink).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/ewrdad/"
+    );
+    expect(contactLink).toHaveAttribute("rel", "noopener noreferrer");
+    expect(contactLink.querySelector("button")).toBeNull();
+
+    const cvLink = screen.getByRole("link", { name: /download cv/i });
+    expect(cvLink.getAttribute("href")).toContain(
+      "EdwardJones-Resume-Sanitised.pdf"
+    );
+    expect(cvLink.querySelector("button")).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: /^resources$/i }));
+    expect(screen.getByTestId("location")).toHaveTextContent("/resources");
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+  });
 });

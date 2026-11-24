@@ -40,6 +40,7 @@ export const CPD = () => {
               <img
                 src="https://udemy-certificate.s3.amazonaws.com/image/UC-87b59a11-95ee-4ffd-a9d7-5121f4058ec7.jpg"
                 alt="Udemy Certificate"
+                loading="lazy"
                 className="w-full h-auto max-w-full rounded-md"
               />
             </AccordionContent>
@@ -57,6 +58,7 @@ export const CPD = () => {
               <img
                 src={RISKMNG01}
                 alt="Risk Management for Cyber Security Managers Certificate"
+                loading="lazy"
                 className="w-full h-auto max-w-full rounded-md"
               />
             </AccordionContent>
