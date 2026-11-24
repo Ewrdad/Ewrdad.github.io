@@ -89,8 +89,8 @@ Before editing individual pages, extract the repeated patterns so mobile respons
      - Tech stack: on mobile, clean wrap of compact tags/pills (`flex flex-wrap gap-1.5 text-xs sm:text-sm`); on desktop (`md:`), stacked or aligned cleanly beside a vertical `Separator`.
      - Content: `text-base sm:text-lg md:text-xl leading-relaxed space-y-3`.
 
-4. **Fix global button styling, wrapping & accordion alignment (`src/index.css`, `src/components/ui/button.jsx`, `src/components/ui/accordion.jsx`)**
-   - Remove the stale Vite starter block in `src/index.css` lines 10–21 (`@media (prefers-color-scheme: light)` setting global `button { background-color: #334155 }`) that breaks ghost/transparent button backgrounds in light mode.
+4. **Fix global button styling, wrapping & accordion alignment (`src/index.css`, `src/App.css`, `src/components/ui/button.jsx`, `src/components/ui/accordion.jsx`)**
+   - Remove the stale Vite starter block in `src/index.css` lines 10–21 (`@media (prefers-color-scheme: light)` setting global `button { background-color: #334155 }`) that breaks ghost/transparent button backgrounds in light mode. Keep `src/App.css`'s `:root` dark `--sidebar-*` tokens intact so the sidebar/mobile drawer retains its dark theme and contrast.
    - Add `text-left gap-2` to `AccordionTrigger` in `src/components/ui/accordion.jsx` so multi-line accordion titles left-align cleanly on narrow screens across `CPD`, `Projects`, and `Resources` instead of centering like default `<button>` text.
    - Ensure full-width buttons with long labels can wrap cleanly when needed (either via a helper class `whitespace-normal h-auto py-2 text-center` on long CTA buttons or adjusting `Button` usage consistently).
 
@@ -116,9 +116,9 @@ Before editing individual pages, extract the repeated patterns so mobile respons
    - In `AppSidebar`:
      - Call `const { isMobile, setOpenMobile } = useSidebar();`.
      - Create a `handleNavigate(to)` helper that calls `navigate(to)` and, if `isMobile`, calls `setOpenMobile(false)`.
-     - Use `handleNavigate` for all `SidebarMenuButton` and `SidebarGroupLabel` clicks, and close the mobile drawer on `SidebarFooter` external/CV link clicks as well.
+     - Use `handleNavigate` for all `SidebarMenuButton` and `SidebarGroupLabel` clicks, and close the mobile drawer on `SidebarFooter` external/CV link clicks as well (also add `target="_blank" rel="noreferrer"` to the external LinkedIn link).
      - Remove the duplicate `onClick` handler on the Raytheon `SidebarMenuItem` (lines 49–53).
-     - Add `cursor-pointer` to clickable `SidebarGroupLabel` items and ensure touch-friendly item spacing on mobile.
+     - Add `cursor-pointer` (and keyboard activation or button semantics) to clickable `SidebarGroupLabel` items and ensure touch-friendly item spacing on mobile.
    - In `src/components/ui/sidebar.jsx`:
      - Add an `sr-only` `<SheetTitle>Navigation</SheetTitle>` and `<SheetDescription>Site navigation menu</SheetDescription>` inside mobile `SheetContent` to satisfy Radix Dialog accessibility requirements and eliminate console warnings.
      - Remove `[&>button]:hidden` (or add a visible close button in the mobile drawer header) so users have an explicit close affordance in addition to backdrop tap, Escape key, and nav item selection.
@@ -195,3 +195,15 @@ Run an isolated headless check (e.g., via `npm run capture:screenshot` if availa
 ### D. Documentation Updates
 1. Update `src/pages/projects/portfolio/Portfolio.jsx` Status text (currently says `"Mobile experience is currently not great."`) to reflect the completed mobile improvements.
 2. Update `README.md` if unit tests are added (update the `"Why no tests?"` FAQ entry and document `npm run test:unit`).
+
+---
+
+## 5. Acceptance Criteria (Definition of Done)
+
+- [ ] Zero horizontal overflow (`scrollWidth <= innerWidth`) across all 8 routes at `375×812`, `390×844`, `768×1024`, and `1280×800`.
+- [ ] Mobile top bar is sticky, readable, and opens the navigation drawer with an accessible touch target.
+- [ ] Selecting any navigation item in the mobile drawer navigates and automatically closes the drawer; drawer also has an explicit close control and accessible `SheetTitle`/`SheetDescription`.
+- [ ] Hash-link navigation scrolls target headings into view below the sticky mobile header.
+- [ ] All interactive controls (Home toggles, Projects/CPD/Resources accordions, Resources tabs, embedded YouTube iframe, and full-width CTA buttons) render cleanly with readable contrast and no clipping or text overflow on 375px viewports.
+- [ ] Desktop layout (`>= 768px`) remains clean and functional with no visual regressions.
+- [ ] `npm run lint`, `npm run test:unit`, and `npm run build` all pass, with `docs/tasks/` preserved intact.
