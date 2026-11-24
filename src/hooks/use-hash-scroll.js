@@ -41,7 +41,11 @@ export function useHashScroll() {
       typeof window.requestAnimationFrame === "function"
     ) {
       const frameId = window.requestAnimationFrame(scrollToTarget);
-      return () => window.cancelAnimationFrame(frameId);
+      return () => {
+        if (typeof window.cancelAnimationFrame === "function") {
+          window.cancelAnimationFrame(frameId);
+        }
+      };
     }
 
     scrollToTarget();

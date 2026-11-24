@@ -95,4 +95,26 @@ describe("App routes and interactions", () => {
     expect(viewLink).toBeVisible();
     expect(viewLink.querySelector("button")).toBeNull();
   });
+
+  it("scrolls to top on route change without hash and skips reset when a hash target is present", async () => {
+    const scrollToSpy = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    const user = userEvent.setup();
+
+    render(
+      <MemoryRouter initialEntries={["/work"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    expect(scrollToSpy).toHaveBeenCalledWith(0, 0);
+    scrollToSpy.mockClear();
+
+    await user.click(
+      screen.getByRole("button", { name: /raytheon \(2022 - present\)/i })
+    );
+    expect(scrollToSpy).not.toHaveBeenCalled();
+
+    await user.click(screen.getByRole("button", { name: /^projects$/i }));
+    expect(scrollToSpy).toHaveBeenCalledWith(0, 0);
+  });
 });

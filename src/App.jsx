@@ -34,6 +34,16 @@ function App() {
     setBackgroundImage(BACKGROUND_IMAGES[randomIndex]);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (
+      !location.hash &&
+      typeof window !== "undefined" &&
+      typeof window.scrollTo === "function"
+    ) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
+
   return (
     <div
       className="min-h-screen w-full overflow-x-clip bg-slate-500 bg-cover bg-center bg-no-repeat md:bg-fixed ease-in-out transition-all duration-1000"

@@ -46,6 +46,11 @@ if [ ! -s "docs/EdwardJones-Resume-Sanitised.pdf" ]; then
   exit 1
 fi
 
+if ! find docs/assets -maxdepth 1 -type f -name '*.js' | grep -q . || ! find docs/assets -maxdepth 1 -type f -name '*.css' | grep -q .; then
+  echo "Error: expected compiled JS and CSS assets in docs/assets are missing." >&2
+  exit 1
+fi
+
 echo "Dev build verified successfully in ${REPO_ROOT}/docs."
 
 if [ "${SERVE_MODE}" = "1" ]; then
