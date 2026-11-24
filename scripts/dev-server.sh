@@ -45,7 +45,7 @@ verify_bundle() {
     return 1
   fi
 
-  if ! find docs/assets -maxdepth 1 -type f -name '*.js' 2>/dev/null | grep -q . || ! find docs/assets -maxdepth 1 -type f -name '*.css' 2>/dev/null | grep -q .; then
+  if [ -z "$(find docs/assets -maxdepth 1 -type f -name '*.js' -print -quit 2>/dev/null)" ] || [ -z "$(find docs/assets -maxdepth 1 -type f -name '*.css' -print -quit 2>/dev/null)" ]; then
     echo "Error: expected compiled JS and CSS assets in docs/assets are missing." >&2
     return 1
   fi
