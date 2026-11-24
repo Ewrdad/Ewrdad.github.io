@@ -7,34 +7,33 @@ export const Home = () => {
   const [toggleChange, setToggleChange] = useState(false);
   const [toggleImpact, setToggleImpact] = useState(false);
 
-  const buttonClass = "h-full align-middle flex lg:p-10 md:p-2 pl-0  ";
-  const textNameClass =
-    "lg:text-9xl md:text-9xl sm:text-6xl text-6xl font-extrabold";
+  const buttonClass =
+    "h-auto w-full md:w-auto justify-between md:justify-start gap-4 px-3 py-3 sm:p-4 md:p-6 bg-transparent hover:bg-slate-900/10 data-[state=on]:bg-slate-900/15 [&_svg]:size-8 sm:[&_svg]:size-12 md:[&_svg]:size-14";
+  const textNameClass = "text-4xl sm:text-6xl lg:text-8xl font-extrabold";
+  const panelBaseClass =
+    "w-full md:w-1/2 p-4 sm:p-6 md:p-8 border-4 bg-slate-900/60 text-white rounded-md text-base sm:text-xl md:text-2xl leading-relaxed";
 
   return (
-    <div className="self-start w-[83vw] min-w-full h-auto justify-between pt-5 items-left">
-      <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
+    <div className="w-full flex flex-col gap-6 sm:gap-8 py-2 sm:py-6">
+      <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:gap-6">
         {
           // MARK: Code
         }
         <Toggle
-          className={buttonClass + "hover:text-red-800"}
-          onClick={() => {
-            setToggleCode((prevValue) => !prevValue);
-          }}
+          className={`${buttonClass} hover:text-red-800 data-[state=on]:text-red-800`}
+          pressed={toggleCode}
+          onPressedChange={setToggleCode}
         >
-          <p className={textNameClass}>Code</p>
-          <p className={textNameClass}>
-            {!toggleCode ? (
-              <BsArrowRightSquare className="text-8xl scale-[2] m-5" />
-            ) : (
-              <BsArrowRightSquareFill className="text-8xl scale-[2] m-5" />
-            )}
-          </p>
+          <span className={textNameClass}>Code</span>
+          {!toggleCode ? (
+            <BsArrowRightSquare className="shrink-0" aria-hidden="true" />
+          ) : (
+            <BsArrowRightSquareFill className="shrink-0" aria-hidden="true" />
+          )}
         </Toggle>
 
         {toggleCode && (
-          <p className="align-middle w-full sm:w-1/2 p-10 border-4 border-red-800 bg-slate-800/40 text-2xl">
+          <p className={`${panelBaseClass} border-red-800`}>
             Understand the technology and talk in real terms. Sometimes
             simplicity can arrise from just working with the code
           </p>
@@ -44,55 +43,48 @@ export const Home = () => {
       {
         // MARK: Change
       }
-
-      <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
+      <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:gap-6">
         <Toggle
-          className={buttonClass + "hover:text-blue-700"}
-          onClick={() => {
-            setToggleChange((prevValue) => !prevValue);
-          }}
+          className={`${buttonClass} hover:text-blue-700 data-[state=on]:text-blue-700`}
+          pressed={toggleChange}
+          onPressedChange={setToggleChange}
         >
-          <p className={textNameClass}>Change</p>
-          <p className={textNameClass}>
-            {!toggleChange ? (
-              <BsArrowRightSquare className="text-8xl scale-[2] m-5" />
-            ) : (
-              <BsArrowRightSquareFill className="text-8xl scale-[2] m-5" />
-            )}
-          </p>
+          <span className={textNameClass}>Change</span>
+          {!toggleChange ? (
+            <BsArrowRightSquare className="shrink-0" aria-hidden="true" />
+          ) : (
+            <BsArrowRightSquareFill className="shrink-0" aria-hidden="true" />
+          )}
         </Toggle>
 
         {toggleChange && (
-          <div className="align-middle w-full sm:w-1/2  border-4 border-blue-700 p-10 bg-slate-800/40 text-2xl">
+          <p className={`${panelBaseClass} border-blue-700`}>
             Embracing change and always striving to innovate. Stagnancy is the
             enemy of progress, the world will always move forward and you must
             move with it.
-          </div>
+          </p>
         )}
       </div>
 
       {
         // MARK: Impact
       }
-      <div className="h-1/3 flex items-center p-2 sm:flex-row flex-col">
+      <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:gap-6">
         <Toggle
-          className={buttonClass + "hover:text-green-800"}
-          onClick={() => {
-            setToggleImpact((prevValue) => !prevValue);
-          }}
+          className={`${buttonClass} hover:text-green-800 data-[state=on]:text-green-800`}
+          pressed={toggleImpact}
+          onPressedChange={setToggleImpact}
         >
-          <p className={textNameClass}>Impact</p>
-          <p className={textNameClass}>
-            {!toggleImpact ? (
-              <BsArrowRightSquare className="text-8xl scale-[2] m-5" />
-            ) : (
-              <BsArrowRightSquareFill className="text-8xl scale-[2] m-5" />
-            )}
-          </p>
+          <span className={textNameClass}>Impact</span>
+          {!toggleImpact ? (
+            <BsArrowRightSquare className="shrink-0" aria-hidden="true" />
+          ) : (
+            <BsArrowRightSquareFill className="shrink-0" aria-hidden="true" />
+          )}
         </Toggle>
 
         {toggleImpact && (
-          <p className="align-middle w-full sm:w-1/2 border-green-800 border-solid p-10 border-4 bg-slate-800/40 text-2xl">
+          <p className={`${panelBaseClass} border-green-800 border-solid`}>
             The most important thing in all work is the impact at the end and
             its good not to lose sight of that. Its easy to get lost in
             &quot;pretty&quot; technicalities and you must remain focused on

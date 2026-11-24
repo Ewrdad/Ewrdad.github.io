@@ -2,7 +2,7 @@ import "./App.css";
 import { AppSidebar } from "./sidebar/sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Home } from "./pages/Home/Home";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { Work } from "./pages/work/Work";
 import { Certs } from "./pages/certs/Certs";
 import { CPD } from "./pages/CPD/CPD";
@@ -16,6 +16,7 @@ import { Button } from "./components/ui/button";
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [backgroundImage, setBackgroundImage] = useState("background_glos.jpg");
 
   useEffect(() => {
@@ -28,71 +29,71 @@ function App() {
       "bg_prid.jpg",
     ];
 
-    //Picks a random background image
+    // Picks a random background image
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
     setBackgroundImage(backgroundImages[randomIndex]);
   }, [location.pathname]);
 
   return (
-    <>
-      <div
-        className="bg-slate-500 h-full w-screen inline-block bg-cover bg-center bg-no-repeat min-h-screen bg-fixed ease-in-out transition-all duration-1000"
-        style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL}${backgroundImage})`,
-        }}
-      >
-        <div className="bg-slate-400/80">
-          <SidebarProvider>
-            <AppSidebar />
-            <div className="block">
-              <div className=" w-screen h-10 items-center lg:hidden md:hidden bg-slate-900 text-white flex text-xl">
-                <SidebarTrigger className="flex" />
+    <div
+      className="min-h-screen w-full overflow-x-clip bg-slate-500 bg-cover bg-center bg-no-repeat md:bg-fixed ease-in-out transition-all duration-1000"
+      style={{
+        backgroundImage: `url(${import.meta.env.BASE_URL}${backgroundImage})`,
+      }}
+    >
+      <div className="min-h-screen w-full bg-slate-400/80">
+        <SidebarProvider>
+          <AppSidebar />
+          <div className="flex flex-1 flex-col min-w-0 w-full">
+            <header className="sticky top-0 z-30 flex h-14 w-full items-center gap-3 bg-slate-900/95 backdrop-blur px-3 text-white shadow-sm md:hidden">
+              <SidebarTrigger className="h-10 w-10 text-white hover:bg-slate-800 hover:text-white" />
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="text-lg font-semibold truncate text-left hover:text-slate-200"
+              >
+                Edward Jones
+              </button>
+            </header>
 
-                <p className="flex w-100">Edward Jones</p>
-              </div>
+            <main className="flex-1 w-full max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+              <Alert className="bg-yellow-600 border-2 border-black mb-6">
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                  <p>
+                    This website is a work in progress. All information may not
+                    be 100% accurate, and the page may not be fully functional.
+                    Please check back later for updates.
+                  </p>
 
-              <div className="flex flex-col w-3/4 ">
-                <div className="self-start w-full h-auto justify-Arou pt-5 items-left">
-                  <Alert className="bg-yellow-600 border-2 border-black m-10">
-                    <AlertTitle>Heads up!</AlertTitle>
-                    <AlertDescription>
-                      <p>
-                        This website is a work in progress. All information may
-                        not be 100% accurate, and the page may not be fully
-                        functional. Please check back later for updates.
-                      </p>
+                  <a
+                    href="https://forms.gle/9GJrseQwnfifaHVSA"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block mt-4"
+                  >
+                    <Button className="w-full whitespace-normal h-auto py-2.5 text-center">
+                      Got feedback? Let me know!
+                    </Button>
+                  </a>
+                </AlertDescription>
+              </Alert>
 
-                      <a
-                        href="https://forms.gle/9GJrseQwnfifaHVSA"
-                        target="_blank"
-                        rel="noreferrer"
-                        className=""
-                      >
-                        <Button className="w-full mt-5">
-                          Got feedback? Let me know! :
-                          https://forms.gle/9GJrseQwnfifaHVSA
-                        </Button>
-                      </a>
-                    </AlertDescription>
-                  </Alert>
-                  {/* <RouterProvider router={router} /> */}
-                  <Routes>
-                    <Route path="*" element={<Home />} />
-                    <Route path="work" element={<Work />} />
-                    <Route path="projects" element={<Projects />} />
-                    <Route path="cpd" element={<CPD />} />
-                    <Route path="certs" element={<Certs />} />
-                    <Route path="activities" element={<Activities />} />
-                    <Route path="edu" element={<Edu />} />
-                    <Route path="resources" element={<Resources />} />
-                  </Routes>
-                </div>
-              </div>
-            </div>
-          </SidebarProvider>
-        </div>
+              <Routes>
+                <Route path="*" element={<Home />} />
+                <Route path="work" element={<Work />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="cpd" element={<CPD />} />
+                <Route path="certs" element={<Certs />} />
+                <Route path="activities" element={<Activities />} />
+                <Route path="edu" element={<Edu />} />
+                <Route path="resources" element={<Resources />} />
+              </Routes>
+            </main>
+          </div>
+        </SidebarProvider>
       </div>
-    </>
+    </div>
   );
 }
 
