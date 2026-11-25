@@ -3,11 +3,15 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
+import { NAV_SECTIONS } from "./data/navigation";
 
 const routes = [
   { path: "/", expectedText: /code/i },
-  { path: "/work", expectedText: /cyber and software academy enginer/i },
-  { path: "/certs", expectedText: /solutions architect associate/i },
+  { path: "/work", expectedText: /cyber & software academy engineer/i },
+  {
+    path: "/certs",
+    expectedText: /aws certified solutions architect – professional/i,
+  },
   { path: "/cpd", expectedText: /bcs membership/i },
   { path: "/projects", expectedText: /jsusedocs/i },
   { path: "/edu", expectedText: /bsc computer security/i },
@@ -116,5 +120,33 @@ describe("App routes and interactions", () => {
 
     await user.click(screen.getByRole("button", { name: /^projects$/i }));
     expect(scrollToSpy).toHaveBeenCalledWith(0, 0);
+  });
+
+  it("renders every sidebar hash anchor target on its corresponding route", () => {
+    const hashTargets = NAV_SECTIONS.flatMap((section) =>
+      section.items
+        .filter((item) => item.to.includes("#"))
+        .map((item) => {
+          const [pathname, hashId] = item.to.split("#");
+          return { pathname, hashId, to: item.to };
+        })
+    );
+
+    expect(hashTargets.length).toBeGreaterThan(0);
+
+    for (const { pathname, hashId } of hashTargets) {
+      const { container, unmount } = render(
+        <MemoryRouter initialEntries={[pathname]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      expect(
+        container.querySelector(`[id="${hashId}"]`),
+        `Expected anchor #${hashId} on route ${pathname}`
+      ).toBeInTheDocument();
+
+      unmount();
+    }
   });
 });

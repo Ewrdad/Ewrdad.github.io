@@ -12,60 +12,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useNavigate } from "react-router";
-
-const NAV_SECTIONS = [
-  {
-    label: "Work",
-    to: "/work",
-    items: [
-      { label: "Raytheon (2022 - Present)", to: "/work#raytheon" },
-      { label: "UKAEA (2020 - 2021)", to: "/work#ukaea" },
-    ],
-  },
-  {
-    label: "Certifcations",
-    to: "/certs",
-    items: [
-      { label: "AWS", to: "/certs#aws" },
-      { label: "CompTIA", to: "/certs#comptia" },
-      { label: "Azure", to: "/certs#azure" },
-    ],
-  },
-  {
-    label: "Proffesional Development",
-    to: "/cpd",
-    items: [
-      { label: "BCS Membership", to: "/cpd#bcs" },
-      { label: "Online Training", to: "/cpd#online" },
-    ],
-  },
-  {
-    label: "Projects",
-    to: "/projects",
-    items: [
-      { label: "Portfolio", to: "/projects#portfolio" },
-      { label: "JsUseDocs", to: "/projects#jsusedocs" },
-      { label: "LiveQuery", to: "/projects#livequery" },
-    ],
-  },
-  {
-    label: "Education",
-    to: "/edu",
-    items: [
-      { label: "BSc Computer Security", to: "/edu#uni" },
-      { label: "Cardiff High School", to: "/edu#chs" },
-    ],
-  },
-  {
-    label: "External Activities",
-    to: "/activities",
-    items: [
-      { label: "Enactus", to: "/activities#enactus" },
-      { label: "Cardiff Youth Council", to: "/activities#cyc" },
-      { label: "3D Printing Hobbiest", to: "/activities#3d" },
-    ],
-  },
-];
+import { NAV_SECTIONS } from "@/data/navigation";
 
 export function AppSidebar() {
   const navigate = useNavigate();

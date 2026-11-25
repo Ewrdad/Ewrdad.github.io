@@ -37,6 +37,31 @@ describe("PageSection", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("Single Meta")).toBeInTheDocument();
   });
+
+  it("renders optional status badge when provided", () => {
+    const { rerender } = render(
+      <PageSection
+        id="comptia"
+        title="CompTIA Security+ ce Certification"
+        meta={["CompTIA", "Issued Apr 2023 · Expired Apr 2026"]}
+        badge={{ label: "Expired", variant: "expired" }}
+      >
+        <p>Certification details</p>
+      </PageSection>
+    );
+
+    const expiredBadge = screen.getByText("Expired");
+    expect(expiredBadge).toBeInTheDocument();
+    expect(expiredBadge.className).toContain("bg-amber-950");
+
+    rerender(
+      <PageSection title="Active Item" badge="Active">
+        <p>Active details</p>
+      </PageSection>
+    );
+
+    expect(screen.getByText("Active")).toBeInTheDocument();
+  });
 });
 
 describe("ProjectAccordionItem", () => {

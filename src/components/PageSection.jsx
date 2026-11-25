@@ -1,22 +1,54 @@
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
-export function PageSection({ id, title, meta = [], children, className }) {
+const BADGE_VARIANTS = {
+  default: "bg-slate-900 text-slate-100 border-slate-700",
+  expired: "bg-amber-950 text-amber-100 border-amber-400/70",
+};
+
+export function PageSection({
+  id,
+  title,
+  meta = [],
+  badge = null,
+  children,
+  className,
+}) {
   const metaItems = Array.isArray(meta)
     ? meta.filter(Boolean)
     : meta
       ? [meta]
       : [];
 
+  const normalizedBadge =
+    typeof badge === "string"
+      ? { label: badge, variant: "default" }
+      : badge && badge.label
+        ? { label: badge.label, variant: badge.variant || "default" }
+        : null;
+
   return (
     <section className={cn("p-4 sm:p-5 space-y-3", className)}>
       <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between md:gap-6">
-        <h1
-          id={id}
-          className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight break-words scroll-mt-20 md:scroll-mt-6 md:w-3/4"
-        >
-          {title}
-        </h1>
+        <div className="md:w-3/4 space-y-2">
+          <h1
+            id={id}
+            className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight break-words scroll-mt-20 md:scroll-mt-6"
+          >
+            {title}
+          </h1>
+          {normalizedBadge && (
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs sm:text-sm font-semibold uppercase tracking-wide",
+                BADGE_VARIANTS[normalizedBadge.variant] ||
+                  BADGE_VARIANTS.default
+              )}
+            >
+              {normalizedBadge.label}
+            </span>
+          )}
+        </div>
         {metaItems.length > 0 && (
           <>
             <Separator
