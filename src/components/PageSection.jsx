@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import { normalizeBadge, normalizeMetaItems } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const BADGE_VARIANTS = {
@@ -14,18 +15,8 @@ export function PageSection({
   children,
   className,
 }) {
-  const metaItems = Array.isArray(meta)
-    ? meta.filter(Boolean)
-    : meta
-      ? [meta]
-      : [];
-
-  const normalizedBadge =
-    typeof badge === "string"
-      ? { label: badge, variant: "default" }
-      : badge && badge.label
-        ? { label: badge.label, variant: badge.variant || "default" }
-        : null;
+  const metaItems = normalizeMetaItems(meta);
+  const normalizedBadge = normalizeBadge(badge);
 
   return (
     <section className={cn("p-4 sm:p-5 space-y-3", className)}>

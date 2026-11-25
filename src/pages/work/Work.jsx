@@ -1,6 +1,7 @@
 import { PageSection } from "@/components/PageSection";
-import { WORK_EXPERIENCE } from "@/data/experience";
+import { WORK_EXPERIENCE, formatWorkMeta } from "@/data/experience";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
+import { normalizeTextItems } from "@/lib/content";
 
 export const Work = () => {
   useHashScroll();
@@ -12,11 +13,9 @@ export const Work = () => {
           key={role.id}
           id={role.id}
           title={role.title}
-          meta={[role.organization, role.employmentType, role.dateRange].filter(
-            Boolean
-          )}
+          meta={formatWorkMeta(role)}
         >
-          {role.paragraphs.map((paragraph, index) => (
+          {normalizeTextItems(role.paragraphs).map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </PageSection>

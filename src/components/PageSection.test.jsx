@@ -61,6 +61,33 @@ describe("PageSection", () => {
     );
 
     expect(screen.getByText("Active")).toBeInTheDocument();
+
+    rerender(
+      <PageSection
+        title="Fallback Variant"
+        badge={{ label: "Custom", variant: "unknown-variant" }}
+      >
+        <p>Fallback details</p>
+      </PageSection>
+    );
+
+    const customBadge = screen.getByText("Custom");
+    expect(customBadge.className).toContain("bg-slate-900");
+  });
+
+  it("omits blank badges and whitespace-only metadata entries", () => {
+    const { container } = render(
+      <PageSection
+        title="Clean Section"
+        meta={["   ", null, false, "Valid Meta"]}
+        badge={{ label: "   ", variant: "expired" }}
+      >
+        <p>Body text</p>
+      </PageSection>
+    );
+
+    expect(screen.getByText("Valid Meta")).toBeInTheDocument();
+    expect(container.querySelector(".rounded-full")).toBeNull();
   });
 });
 

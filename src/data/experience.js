@@ -9,6 +9,24 @@
  * @property {string[]} paragraphs - Narrative paragraphs
  */
 
+/**
+ * Formats work experience metadata lines for display in PageSection.
+ * Fails safe to an empty array if `role` is missing or invalid.
+ *
+ * @param {WorkExperienceItem | null | undefined} role
+ * @returns {string[]}
+ */
+export function formatWorkMeta(role) {
+  if (!role || typeof role !== "object") {
+    return [];
+  }
+
+  return [role.organization, role.employmentType, role.dateRange]
+    .filter((item) => typeof item === "string")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 /** @type {WorkExperienceItem[]} */
 export const WORK_EXPERIENCE = [
   {

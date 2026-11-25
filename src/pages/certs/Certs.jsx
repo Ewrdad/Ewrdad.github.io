@@ -3,8 +3,10 @@ import { PageSection } from "@/components/PageSection";
 import {
   CERTIFICATION_GROUPS,
   formatCertificationMeta,
+  getCertificationBadge,
 } from "@/data/certifications";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
+import { normalizeTextItems } from "@/lib/content";
 
 export const Certs = () => {
   useHashScroll();
@@ -13,10 +15,8 @@ export const Certs = () => {
     <div className="space-y-4">
       {CERTIFICATION_GROUPS.map((group) => (
         <Fragment key={group.id}>
-          {group.items.map((cert, index) => {
-            const paragraphs = Array.isArray(cert.description)
-              ? cert.description
-              : [cert.description];
+          {(group.items ?? []).map((cert, index) => {
+            const paragraphs = normalizeTextItems(cert.description);
 
             return (
               <PageSection
@@ -24,11 +24,7 @@ export const Certs = () => {
                 id={index === 0 ? group.id : undefined}
                 title={cert.title}
                 meta={formatCertificationMeta(cert)}
-                badge={
-                  cert.status === "expired"
-                    ? { label: "Expired", variant: "expired" }
-                    : null
-                }
+                badge={getCertificationBadge(cert)}
               >
                 {paragraphs.map((paragraph, paragraphIndex) => (
                   <p key={paragraphIndex}>{paragraph}</p>

@@ -18,30 +18,65 @@
  * @property {CertificationItem[]} items - Ordered list of certifications
  */
 
+export const CERTIFICATION_STATUSES = Object.freeze([
+  "active",
+  "expired",
+  "no-expiry",
+]);
+
 /**
  * Formats certification metadata lines for display in PageSection.
+ * Fails safe to an empty array if `cert` is missing or invalid.
  *
- * @param {CertificationItem} cert
+ * @param {CertificationItem | null | undefined} cert
  * @returns {string[]}
  */
 export function formatCertificationMeta(cert) {
-  let dateText = cert.dateRange || "";
+  if (!cert || typeof cert !== "object") {
+    return [];
+  }
+
+  const issuer = typeof cert.issuer === "string" ? cert.issuer.trim() : "";
+  const code = typeof cert.code === "string" ? cert.code.trim() : "";
+  const issued = typeof cert.issued === "string" ? cert.issued.trim() : "";
+  const expires = typeof cert.expires === "string" ? cert.expires.trim() : "";
+  const isExpired = cert.status === "expired";
+  const expiryPrefix = isExpired ? "Expired" : "Expires";
+
+  let dateText =
+    typeof cert.dateRange === "string" ? cert.dateRange.trim() : "";
 
   if (!dateText) {
-    if (cert.issued && cert.expires) {
-      const expiryPrefix = cert.status === "expired" ? "Expired" : "Expires";
-      dateText = `Issued ${cert.issued} · ${expiryPrefix} ${cert.expires}`;
-    } else if (cert.issued) {
-      dateText =
-        cert.status === "expired"
-          ? `Issued ${cert.issued} · Expired`
-          : `Issued ${cert.issued}`;
-    } else if (cert.status === "expired") {
+    if (issued && expires) {
+      dateText = `Issued ${issued} · ${expiryPrefix} ${expires}`;
+    } else if (issued) {
+      dateText = isExpired ? `Issued ${issued} · Expired` : `Issued ${issued}`;
+    } else if (expires) {
+      dateText = `${expiryPrefix} ${expires}`;
+    } else if (isExpired) {
       dateText = "Expired";
     }
   }
 
-  return [cert.issuer, cert.code, dateText].filter(Boolean);
+  return [issuer, code, dateText].filter(Boolean);
+}
+
+/**
+ * Derives an optional status badge descriptor for a certification item.
+ *
+ * @param {CertificationItem | null | undefined} cert
+ * @returns {{ label: string, variant: string } | null}
+ */
+export function getCertificationBadge(cert) {
+  if (!cert || typeof cert !== "object") {
+    return null;
+  }
+
+  if (cert.status === "expired") {
+    return { label: "Expired", variant: "expired" };
+  }
+
+  return null;
 }
 
 /** @type {CertificationGroup[]} */

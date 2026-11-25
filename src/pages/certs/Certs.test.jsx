@@ -1,7 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { describe, expect, it } from "vitest";
-import { formatCertificationMeta } from "@/data/certifications";
+import {
+  formatCertificationMeta,
+  getCertificationBadge,
+} from "@/data/certifications";
 import { Certs } from "./Certs";
 
 describe("formatCertificationMeta", () => {
@@ -40,6 +43,46 @@ describe("formatCertificationMeta", () => {
         status: "no-expiry",
       })
     ).toEqual(["Microsoft", "Issued Oct 2021"]);
+  });
+
+  it("handles edge cases safely without throwing", () => {
+    expect(formatCertificationMeta(null)).toEqual([]);
+    expect(formatCertificationMeta(undefined)).toEqual([]);
+    expect(
+      formatCertificationMeta({
+        issuer: "  CompTIA  ",
+        expires: "Apr 2026",
+        status: "expired",
+      })
+    ).toEqual(["CompTIA", "Expired Apr 2026"]);
+    expect(
+      formatCertificationMeta({
+        issuer: "AWS",
+        issued: "Jan 2020",
+        status: "expired",
+      })
+    ).toEqual(["AWS", "Issued Jan 2020 · Expired"]);
+    expect(
+      formatCertificationMeta({
+        issuer: "AWS",
+        dateRange: "Custom Range",
+        issued: "Jan 2020",
+        status: "active",
+      })
+    ).toEqual(["AWS", "Custom Range"]);
+  });
+});
+
+describe("getCertificationBadge", () => {
+  it("returns an expired badge only for expired certifications and fails safe on nullish inputs", () => {
+    expect(getCertificationBadge({ status: "expired" })).toEqual({
+      label: "Expired",
+      variant: "expired",
+    });
+    expect(getCertificationBadge({ status: "active" })).toBeNull();
+    expect(getCertificationBadge({ status: "no-expiry" })).toBeNull();
+    expect(getCertificationBadge(null)).toBeNull();
+    expect(getCertificationBadge(undefined)).toBeNull();
   });
 });
 

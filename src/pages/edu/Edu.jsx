@@ -1,6 +1,7 @@
 import { PageSection } from "@/components/PageSection";
 import { EDUCATION } from "@/data/education";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
+import { normalizeTextItems } from "@/lib/content";
 
 export const Edu = () => {
   useHashScroll();
@@ -14,7 +15,7 @@ export const Edu = () => {
           title={item.title}
           meta={item.meta}
         >
-          {item.paragraphs.map((paragraph, index) => (
+          {normalizeTextItems(item.paragraphs).map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </PageSection>
