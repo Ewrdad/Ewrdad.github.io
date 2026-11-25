@@ -1,0 +1,271 @@
+{
+  "id": "f2f1cd5d-176d-4482-adff-30e6b0846e44",
+  "name": "Ewrdad.github.io",
+  "slug": "ewrdad-github-io",
+  "cwd": "/home/server/projects/Ewrdad.github.io",
+  "agentDir": "/home/server/.pi/agent",
+  "notesPath": "/home/server/apps/notes/silverbullet/space/Projects/Personal/Ewrdad.github.io",
+  "notesDir": "/home/server/apps/notes/silverbullet/space/Projects/Personal/Ewrdad.github.io",
+  "gitUrl": null,
+  "gitRepo": null,
+  "hasUpstreamRepo": true,
+  "repoUrl": "https://github.com/Ewrdad/Ewrdad.github.io.git",
+  "useBranches": true,
+  "preserveReviewDiffAfterMerge": false,
+  "resetReviewBaselineOnMerge": true,
+  "workspaceIsolation": "quarantine",
+  "dirtyTreeRecovery": "ladder",
+  "defaultModel": "antigravity::antigravity::gemini-4-neon-medium",
+  "harness": "antigravity",
+  "accentColor": "#7bdb85",
+  "activeWorkflowId": "wf-main-de6ee4",
+  "workflows": [
+    {
+      "id": "wf-default",
+      "name": "Feature Pipeline",
+      "isDefault": true,
+      "stages": [
+        {
+          "id": "1",
+          "name": "Idea",
+          "type": "human",
+          "prompt": "Generate creative ideas.",
+          "paused": false,
+          "failback": "start",
+          "harness": "mock",
+          "model": "mock::mock::echo-v1"
+        },
+        {
+          "id": "2",
+          "name": "Technical Elab",
+          "type": "agent",
+          "prompt": "Elaborate on technical specs.",
+          "paused": false,
+          "failback": "previous",
+          "harness": "mock",
+          "model": "mock::mock::echo-v1"
+        },
+        {
+          "id": "3",
+          "name": "Plan",
+          "type": "agent",
+          "prompt": "Create a detailed plan.",
+          "paused": false,
+          "failback": "previous"
+        },
+        {
+          "id": "4",
+          "name": "Review Plan",
+          "type": "human",
+          "prompt": "Human review of the plan.",
+          "paused": false,
+          "failback": "previous"
+        },
+        {
+          "id": "5",
+          "name": "In Progress",
+          "type": "agent",
+          "prompt": "Executing the task.",
+          "paused": false,
+          "failback": "previous"
+        },
+        {
+          "id": "6",
+          "name": "Deploy",
+          "type": "ci",
+          "command": "./deploy.sh --prod",
+          "paused": false,
+          "failback": "previous"
+        }
+      ]
+    },
+    {
+      "id": "wf-main-de6ee4",
+      "name": "main",
+      "isDefault": false,
+      "stages": [
+        {
+          "id": "stage-1791833613563-0",
+          "name": "Idea",
+          "type": "human",
+          "prompt": "Generate creative ideas.",
+          "paused": false,
+          "failback": "start"
+        },
+        {
+          "id": "stage-1791833613563-1",
+          "name": "Plan",
+          "type": "agent",
+          "prompt": "Create a detailed step by step plan on how to implement this. Big pieces of work or research pieces should be earlier in the workflow.  Include also a plan to assure the change was implemented (such as testing and documentation plans)\n\nRemember to follow the principle of make change easy then make the change\n\n Please write it in to {{taskDocs}} as IMPLEMENTATION_PLAN.md ",
+          "model": "",
+          "paused": false,
+          "failback": "previous"
+        },
+        {
+          "id": "stage-1791833613563-5",
+          "name": "In Progress",
+          "type": "agent",
+          "prompt": "Please execute the plan dictated in  {{taskDocs}} in the IMPLEMENTATION_PLAN.md\nRemember to follow the projects coding standards and implement thorough tests to prove it works. \n\nYou are then responsible for making sure all tests and checks pass, Regardless if you implemented them or not\n\nPlease be careful not to interfere with the live operations of the app\n\nKeep going till fully implemented. This may of \"failed\" back to you after review from another agent or person, they should give you a reason and give you a list of things to fix, however if they don't do your own review and fix issues you find. It may be worth to generally look in {{taskDocs}} for past failures.",
+          "model": "",
+          "timeout": 6400000,
+          "paused": false,
+          "failback": "previous"
+        },
+        {
+          "id": "stage-1791833613563-8",
+          "name": "Cleaning pass",
+          "type": "agent",
+          "prompt": "The bulk of the work should be done by now. Your job now is to clean up the code and make sure its maintainable, follows standards and is rigid. \n\nplease make sure :\n- The code does as intended\n- edge cases are handled\n- this is really reliable and fails safe\n- it is fully tested\n- follows code standards\n- is modular and re-usable\n- Is clear on how it can fail\n- Does it regress any functionality?\n\nfeel free to write and change as much code as needed including if it was not directly related to the original change. This is also affecting an operational environment so make sure the change has taken things like transfer and continuation of operations into account ",
+          "model": "",
+          "paused": false,
+          "failback": "5"
+        },
+        {
+          "id": "stage-1791833613563-7",
+          "name": "Quick review",
+          "type": "agent",
+          "prompt": "Please go through previous reports and the code to decide if this change is suitable to integrate or if it needs more work. This is effectively a PR review stage.\n\nYou should as yourself:\n- Does it achieve the goal settout about?\n- Did it follow the plan? \n- Does it comply with code standards?\n- Is it easy to modify later?\n- Have previouse failured reviews been resolved?\n\n\nIf the answer to any of those is no please fail the stage with feedback\n\nPlease be careful not to interfere with the live operations of the app",
+          "model": "",
+          "skills": [
+            {
+              "name": "stage-verdict",
+              "mode": "direct",
+              "config": {}
+            }
+          ],
+          "paused": false,
+          "failback": "stage-1791833613563-5",
+          "fallback": "stage-1791833613563-5"
+        },
+        {
+          "id": "stage-1792093968770",
+          "name": "Deploy dev",
+          "type": "ci",
+          "prompt": "",
+          "paused": false,
+          "failback": "previous",
+          "command": "./scripts/dev-server.sh start",
+          "script": "./scripts/dev-server.sh start",
+          "runOnBranch": "task",
+          "runnerPolicy": {
+            "mode": "allow",
+            "runners": [
+              "local-alpha",
+              "local-bravo"
+            ]
+          }
+        },
+        {
+          "id": "stage-1791833613563-12",
+          "name": "Final review",
+          "type": "human",
+          "prompt": "",
+          "paused": false,
+          "failback": "5"
+        },
+        {
+          "id": "stage-1791833613563-11",
+          "name": "Merge",
+          "type": "merge",
+          "prompt": "",
+          "timeout": 3600000,
+          "paused": false,
+          "failback": "5"
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "stage-1791833613563-0",
+      "name": "Idea",
+      "type": "human",
+      "prompt": "Generate creative ideas.",
+      "paused": false,
+      "failback": "start"
+    },
+    {
+      "id": "stage-1791833613563-1",
+      "name": "Plan",
+      "type": "agent",
+      "prompt": "Create a detailed step by step plan on how to implement this. Big pieces of work or research pieces should be earlier in the workflow.  Include also a plan to assure the change was implemented (such as testing and documentation plans)\n\nRemember to follow the principle of make change easy then make the change\n\n Please write it in to {{taskDocs}} as IMPLEMENTATION_PLAN.md ",
+      "model": "",
+      "paused": false,
+      "failback": "previous"
+    },
+    {
+      "id": "stage-1791833613563-5",
+      "name": "In Progress",
+      "type": "agent",
+      "prompt": "Please execute the plan dictated in  {{taskDocs}} in the IMPLEMENTATION_PLAN.md\nRemember to follow the projects coding standards and implement thorough tests to prove it works. \n\nYou are then responsible for making sure all tests and checks pass, Regardless if you implemented them or not\n\nPlease be careful not to interfere with the live operations of the app\n\nKeep going till fully implemented. This may of \"failed\" back to you after review from another agent or person, they should give you a reason and give you a list of things to fix, however if they don't do your own review and fix issues you find. It may be worth to generally look in {{taskDocs}} for past failures.",
+      "model": "",
+      "timeout": 6400000,
+      "paused": false,
+      "failback": "previous"
+    },
+    {
+      "id": "stage-1791833613563-8",
+      "name": "Cleaning pass",
+      "type": "agent",
+      "prompt": "The bulk of the work should be done by now. Your job now is to clean up the code and make sure its maintainable, follows standards and is rigid. \n\nplease make sure :\n- The code does as intended\n- edge cases are handled\n- this is really reliable and fails safe\n- it is fully tested\n- follows code standards\n- is modular and re-usable\n- Is clear on how it can fail\n- Does it regress any functionality?\n\nfeel free to write and change as much code as needed including if it was not directly related to the original change. This is also affecting an operational environment so make sure the change has taken things like transfer and continuation of operations into account ",
+      "model": "",
+      "paused": false,
+      "failback": "5"
+    },
+    {
+      "id": "stage-1791833613563-7",
+      "name": "Quick review",
+      "type": "agent",
+      "prompt": "Please go through previous reports and the code to decide if this change is suitable to integrate or if it needs more work. This is effectively a PR review stage.\n\nYou should as yourself:\n- Does it achieve the goal settout about?\n- Did it follow the plan? \n- Does it comply with code standards?\n- Is it easy to modify later?\n- Have previouse failured reviews been resolved?\n\n\nIf the answer to any of those is no please fail the stage with feedback\n\nPlease be careful not to interfere with the live operations of the app",
+      "model": "",
+      "skills": [
+        {
+          "name": "stage-verdict",
+          "mode": "direct",
+          "config": {}
+        }
+      ],
+      "paused": false,
+      "failback": "stage-1791833613563-5",
+      "fallback": "stage-1791833613563-5"
+    },
+    {
+      "id": "stage-1792093968770",
+      "name": "Deploy dev",
+      "type": "ci",
+      "prompt": "",
+      "paused": false,
+      "failback": "previous",
+      "command": "./scripts/dev-server.sh start",
+      "script": "./scripts/dev-server.sh start",
+      "runOnBranch": "task",
+      "runnerPolicy": {
+        "mode": "allow",
+        "runners": [
+          "local-alpha",
+          "local-bravo"
+        ]
+      }
+    },
+    {
+      "id": "stage-1791833613563-12",
+      "name": "Final review",
+      "type": "human",
+      "prompt": "",
+      "paused": false,
+      "failback": "5"
+    },
+    {
+      "id": "stage-1791833613563-11",
+      "name": "Merge",
+      "type": "merge",
+      "prompt": "",
+      "timeout": 3600000,
+      "paused": false,
+      "failback": "5"
+    }
+  ],
+  "currentStageId": null,
+  "createdAt": "2026-10-05T08:11:27.868Z",
+  "updatedAt": "2026-11-24T21:14:13.833Z"
+}
