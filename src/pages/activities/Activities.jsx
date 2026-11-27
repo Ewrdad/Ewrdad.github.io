@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { PageSection } from "@/components/PageSection";
 import { ACTIVITIES } from "@/data/activities";
 import { useHashScroll } from "@/hooks/use-hash-scroll";
-import { isSafeExternalUrl, normalizeTextItems } from "@/lib/content";
+import { normalizeExternalLinks, normalizeTextItems } from "@/lib/content";
 
 export const Activities = () => {
   useHashScroll();
@@ -11,13 +11,7 @@ export const Activities = () => {
     <div className="space-y-4">
       {ACTIVITIES.map((activity) => {
         const paragraphs = normalizeTextItems(activity.paragraphs);
-        const validLinks = (activity.links ?? []).filter(
-          (link) =>
-            link &&
-            typeof link.label === "string" &&
-            link.label.trim() &&
-            isSafeExternalUrl(link.href)
-        );
+        const validLinks = normalizeExternalLinks(activity.links);
 
         return (
           <PageSection

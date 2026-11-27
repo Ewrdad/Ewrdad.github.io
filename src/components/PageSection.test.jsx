@@ -75,17 +75,20 @@ describe("PageSection", () => {
     expect(customBadge.className).toContain("bg-slate-900");
   });
 
-  it("omits blank badges and whitespace-only metadata entries", () => {
+  it("omits blank badges, blank ids, and invalid metadata entries", () => {
     const { container } = render(
       <PageSection
+        id="   "
         title="Clean Section"
-        meta={["   ", null, false, "Valid Meta"]}
+        meta={["   ", null, false, { invalid: true }, "Valid Meta"]}
         badge={{ label: "   ", variant: "expired" }}
       >
         <p>Body text</p>
       </PageSection>
     );
 
+    const heading = screen.getByRole("heading", { name: "Clean Section" });
+    expect(heading).not.toHaveAttribute("id");
     expect(screen.getByText("Valid Meta")).toBeInTheDocument();
     expect(container.querySelector(".rounded-full")).toBeNull();
   });

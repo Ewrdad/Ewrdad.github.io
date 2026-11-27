@@ -1,5 +1,9 @@
 import { Separator } from "@/components/ui/separator";
-import { normalizeBadge, normalizeMetaItems } from "@/lib/content";
+import {
+  normalizeAnchorId,
+  normalizeBadge,
+  normalizeMetaItems,
+} from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const BADGE_VARIANTS = {
@@ -15,6 +19,7 @@ export function PageSection({
   children,
   className,
 }) {
+  const anchorId = normalizeAnchorId(id);
   const metaItems = normalizeMetaItems(meta);
   const normalizedBadge = normalizeBadge(badge);
 
@@ -23,7 +28,7 @@ export function PageSection({
       <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between md:gap-6">
         <div className="md:w-3/4 space-y-2">
           <h1
-            id={id}
+            id={anchorId}
             className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight break-words scroll-mt-20 md:scroll-mt-6"
           >
             {title}

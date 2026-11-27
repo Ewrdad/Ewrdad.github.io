@@ -1,3 +1,18 @@
+import { isValidElement } from "react";
+
+/**
+ * Normalizes an HTML anchor ID, returning undefined for non-strings or blanks
+ * so components never emit invalid empty `id=""` attributes.
+ *
+ * @param {unknown} id
+ * @returns {string | undefined}
+ */
+export function normalizeAnchorId(id) {
+  if (typeof id !== "string") return undefined;
+  const trimmed = id.trim();
+  return trimmed || undefined;
+}
+
 /**
  * Normalizes a string or array of strings into non-empty trimmed paragraphs.
  * Fails safe by returning an empty array for null, undefined, or invalid input.
@@ -15,7 +30,7 @@ export function normalizeTextItems(value) {
 
 /**
  * Normalizes PageSection metadata into renderable items, dropping nullish,
- * boolean, and whitespace-only string entries.
+ * boolean, non-finite numbers, plain non-React objects, and whitespace-only strings.
  *
  * @param {unknown} meta
  * @returns {unknown[]}
@@ -33,7 +48,15 @@ export function normalizeMetaItems(meta) {
       }
       return acc;
     }
-    acc.push(item);
+    if (typeof item === "number") {
+      if (Number.isFinite(item)) {
+        acc.push(item);
+      }
+      return acc;
+    }
+    if (isValidElement(item)) {
+      acc.push(item);
+    }
     return acc;
   }, []);
 }
@@ -80,4 +103,31 @@ export function isSafeExternalUrl(href) {
   } catch {
     return false;
   }
+}
+
+/**
+ * Filters and trims external link descriptors, dropping malformed or unsafe entries.
+ * Fails safe to an empty array for non-array inputs.
+ *
+ * @param {unknown} links
+ * @returns {{ label: string, href: string }[]}
+ */
+export function normalizeExternalLinks(links) {
+  if (!Array.isArray(links)) return [];
+  return links.reduce((acc, link) => {
+    if (
+      !link ||
+      typeof link !== "object" ||
+      typeof link.label !== "string" ||
+      !isSafeExternalUrl(link.href)
+    ) {
+      return acc;
+    }
+    const label = link.label.trim();
+    const href = link.href.trim();
+    if (label && href) {
+      acc.push({ label, href });
+    }
+    return acc;
+  }, []);
 }

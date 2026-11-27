@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import { describe, expect, it } from "vitest";
 import { ACTIVITIES } from "./activities";
 import {
@@ -6,10 +7,12 @@ import {
 } from "./certifications";
 import { EDUCATION } from "./education";
 import { WORK_EXPERIENCE, formatWorkMeta } from "./experience";
-import { NAV_SECTIONS } from "./navigation";
+import { NAV_SECTIONS, buildNavItems } from "./navigation";
 import {
   isSafeExternalUrl,
+  normalizeAnchorId,
   normalizeBadge,
+  normalizeExternalLinks,
   normalizeMetaItems,
   normalizeTextItems,
 } from "@/lib/content";
@@ -40,6 +43,13 @@ describe("Credential data schema and operational integrity", () => {
         expect(item.issuer.trim().length).toBeGreaterThan(0);
         expect(CERTIFICATION_STATUSES).toContain(item.status);
         expect(normalizeTextItems(item.description).length).toBeGreaterThan(0);
+
+        if (item.status === "no-expiry") {
+          expect(item.expires).toBeUndefined();
+        }
+        if (item.status === "expired") {
+          expect(Boolean(item.expires || item.dateRange)).toBe(true);
+        }
       }
     }
   });
@@ -105,8 +115,24 @@ describe("Content and formatting helpers", () => {
       "b",
     ]);
 
+    expect(normalizeAnchorId("  aws  ")).toBe("aws");
+    expect(normalizeAnchorId("   ")).toBeUndefined();
+    expect(normalizeAnchorId(null)).toBeUndefined();
+
     expect(normalizeMetaItems(null)).toEqual([]);
-    expect(normalizeMetaItems(["  ", false, null, "Item"])).toEqual(["Item"]);
+    const badgeEl = createElement("span", null, "Custom");
+    expect(
+      normalizeMetaItems([
+        "  ",
+        false,
+        null,
+        { invalid: true },
+        Number.NaN,
+        2026,
+        badgeEl,
+        "Item",
+      ])
+    ).toEqual([2026, badgeEl, "Item"]);
 
     expect(normalizeBadge("")).toBeNull();
     expect(normalizeBadge("   ")).toBeNull();
@@ -121,5 +147,28 @@ describe("Content and formatting helpers", () => {
     expect(isSafeExternalUrl("javascript:alert(1)")).toBe(false);
     expect(isSafeExternalUrl("not-a-url")).toBe(false);
     expect(isSafeExternalUrl(null)).toBe(false);
+
+    expect(normalizeExternalLinks(null)).toEqual([]);
+    expect(
+      normalizeExternalLinks([
+        null,
+        { label: "  ", href: "https://example.com" },
+        { label: "Unsafe", href: "javascript:alert(1)" },
+        { label: "  Mindhub  ", href: " https://mindhub.wales/ " },
+      ])
+    ).toEqual([{ label: "Mindhub", href: "https://mindhub.wales/" }]);
+
+    expect(buildNavItems(null, "/work")).toEqual([]);
+    expect(
+      buildNavItems(
+        [
+          null,
+          { id: "", sidebarLabel: "Missing ID" },
+          { id: "valid", sidebarLabel: "  " },
+          { id: " raytheon ", sidebarLabel: " Raytheon " },
+        ],
+        "/work"
+      )
+    ).toEqual([{ label: "Raytheon", to: "/work#raytheon" }]);
   });
 });

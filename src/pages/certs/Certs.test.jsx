@@ -64,6 +64,14 @@ describe("formatCertificationMeta", () => {
     ).toEqual(["AWS", "Issued Jan 2020 · Expired"]);
     expect(
       formatCertificationMeta({
+        issuer: "Microsoft",
+        issued: "Oct 2021",
+        expires: "Oct 2025",
+        status: "no-expiry",
+      })
+    ).toEqual(["Microsoft", "Issued Oct 2021"]);
+    expect(
+      formatCertificationMeta({
         issuer: "AWS",
         dateRange: "Custom Range",
         issued: "Jan 2020",

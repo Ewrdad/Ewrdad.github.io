@@ -39,7 +39,9 @@ export function formatCertificationMeta(cert) {
   const issuer = typeof cert.issuer === "string" ? cert.issuer.trim() : "";
   const code = typeof cert.code === "string" ? cert.code.trim() : "";
   const issued = typeof cert.issued === "string" ? cert.issued.trim() : "";
-  const expires = typeof cert.expires === "string" ? cert.expires.trim() : "";
+  const isNoExpiry = cert.status === "no-expiry";
+  const expires =
+    !isNoExpiry && typeof cert.expires === "string" ? cert.expires.trim() : "";
   const isExpired = cert.status === "expired";
   const expiryPrefix = isExpired ? "Expired" : "Expires";
 
